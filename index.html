@@ -1,24 +1,22 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <!-- /// META CƠ BẢN /// -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
-    <!-- /// META TIÊU ĐỀ & MÔ TẢ /// -->
-    <title>Niyaki Pham | Profile Cá Nhân | Nhà Phát Triển & Sáng Tạo</title>
+    <!--  META TIÊU ĐỀ & MÔ TẢ  -->
+    <title>Niyaki Pham | Profile Cá Nhân </title>
     <meta name="description" content="Chào mừng đến với profile cá nhân của Niyaki Phạm (Phạm Văn Hoàng) - Nơi hội tụ đam mê công nghệ, lập trình và sáng tạo. Khám phá các dự án và liên hệ với Niyaki (Hoàng Nghiền PC).">
     <meta name="author" content="Niyaki Pham (Phạm Văn Hoàng)">
 
     <!-- /// META TỪ KHÓA SEO (RẤT QUAN TRỌNG!) /// -->
-    <meta name="keywords" content="Niyaki Phạm, Niyaki Pham, niyakipham, Nishima Hayashi, Hoàng Nghiền PC, Phạm Văn Hoàng, Pham Van Hoang, Phạm Văn Hoàng 2006, Phạm Văn Hoàng HP, Phạm Văn Hoàng Hải Phòng, Lập trình viên Hải Phòng, Developer Hải Phòng, Profile cá nhân, Porfolio, Web Developer, AI, Khoa học viễn tưởng, Sci-fi profile">
+    <meta name="keywords" content="Niyaki Phạm, Niyaki Pham, niyakipham, Nishima Hayashi, Hoàng Nghiền PC, Phạm Văn Hoàng, Pham Van Hoang, Phạm Văn Hoàng 2006, Phạm Văn Hoàng HP, Phạm Văn Hoàng Hải Phòng, Lập trình viên Hải Phòng, Developer Hải Phòng, Profile cá nhân, Porfolio, Web Developer, AI, Khoa học viễn tưởng, Sci-fi profile, Music Player, Real-time Clock">
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
     <meta name="googlebot" content="index, follow">
 
     <!-- /// META CANONICAL URL /// -->
-    <link rel="canonical" href="https://niyakipham.github.io/">
-    <!-- Lưu ý: Hãy thay đổi URL này thành URL chính thức của bạn khi triển khai -->
+    <link rel="canonical" href="https://niyakipham.github.io/"> <!-- Nhớ thay đổi khi deploy -->
 
     <!-- /// META ICON (FAVICON) /// -->
     <link rel="icon" href="https://niyakipham.github.io/assets/kaguya.jpeg" type="image/jpeg">
@@ -26,9 +24,9 @@
 
     <!-- /// META OPEN GRAPH (Facebook, Zalo,...) /// -->
     <meta property="og:title" content="Niyaki Phạm (Phạm Văn Hoàng) - Profile Đậm Chất Sci-Fi">
-    <meta property="og:description" content="Khám phá thế giới sáng tạo của Niyaki Phạm (Hoàng Nghiền PC) qua trang profile cá nhân độc đáo này. Liên hệ và kết nối ngay!">
+    <meta property="og:description" content="Khám phá thế giới sáng tạo của Niyaki Phạm (Hoàng Nghiền PC) qua trang profile cá nhân độc đáo này, tích hợp trình phát nhạc và đồng hồ. Liên hệ và kết nối ngay!">
     <meta property="og:type" content="profile">
-    <meta property="og:url" content="https://niyakipham.github.io/"> <!-- Thay URL khi triển khai -->
+    <meta property="og:url" content="https://niyakipham.github.io/"> <!-- Nhớ thay đổi khi deploy -->
     <meta property="og:image" content="https://raw.githubusercontent.com/niyakipham/assets/kaguya.jpeg">
     <meta property="og:image:alt" content="Ảnh đại diện của Niyaki Phạm">
     <meta property="og:locale" content="vi_VN">
@@ -39,630 +37,420 @@
     <meta name="twitter:title" content="Niyaki Phạm - Profile Cá Nhân Độc Đáo">
     <meta name="twitter:description" content="Kết nối với Niyaki Phạm (Phạm Văn Hoàng / Hoàng Nghiền PC) - một nhà phát triển trẻ đầy đam mê từ Hải Phòng.">
     <meta name="twitter:image" content="https://raw.githubusercontent.com/niyakipham/assets/kaguya.jpeg">
-    <meta name="twitter:site" content="@niyakipham"> <!-- Thay @username Twitter nếu có -->
-    <meta name="twitter:creator" content="@niyakipham"> <!-- Thay @username Twitter nếu có -->
+    <meta name="twitter:site" content="@niyakipham"> <!-- Thay nếu có -->
+    <meta name="twitter:creator" content="@niyakipham"> <!-- Thay nếu có -->
 
     <!-- /// GOOGLE FONTS /// -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
 
-    <!-- /// IONICONS (For Social Icons) /// -->
+    <!-- /// IONICONS /// -->
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js" defer></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js" defer></script>
 
-    <!-- /// ANIME.JS v3.2.1 /// -->
+    <!-- /// ANIME.JS /// -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
 
     <style>
         /* === CSS RESET & BASE STYLES === */
-        *,
-        *::before,
-        *::after {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
-            /* Color Palette */
-            --color-bg-dark: #0a0a0a; /* Deep Black */
-            --color-bg-light: #1a1a1a; /* Darker Gray */
-            --color-primary: #e11d48; /* Vibrant Pink (Highlight - Darker) */
-            --color-secondary: #f43f5e; /* Lighter Pink */
-            --color-accent: #f87171; /* Soft Pink/Coral */
-            --color-text-primary: #f1f1f1; /* Light Gray / Off-white */
-            --color-text-secondary: #a1a1a1; /* Medium Gray */
-            --color-glitch-1: #00ffff; /* Cyan */
-            --color-glitch-2: #ff00ff; /* Magenta */
-            /* Auto-generated primary RGB for RGBA usage (see JS) */
-            --color-primary-rgb: 225, 29, 72;
-
+            /* Color Palette & Config */
+            --color-bg-dark: #0a0a0a;
+            --color-primary: #e11d48;
+            --color-secondary: #f43f5e;
+            --color-accent: #f87171;
+            --color-text-primary: #f1f1f1;
+            --color-text-secondary: #a1a1a1;
+            --color-primary-rgb: 225, 29, 72; /* Default, JS will try to override */
+            --color-glitch-1: #00ffff;
+            --color-glitch-2: #ff00ff;
             /* Fonts */
             --font-primary: 'Inter', sans-serif;
-            --font-secondary: 'Orbitron', sans-serif; /* Sci-fi font */
-
+            --font-secondary: 'Orbitron', sans-serif;
+            /* Grid Background */
+            --grid-size: 30px;
+            --grid-line-color: rgba(var(--color-primary-rgb), 0.08);
+            --grid-line-width: 1px;
             /* Animation & Transition */
             --transition-speed-fast: 0.2s;
             --transition-speed-normal: 0.4s;
             --transition-speed-slow: 0.7s;
-
             /* Border Radius */
-            --border-radius-sm: 4px; /* Rounded corner value (1-5px range) */
+            --border-radius-sm: 4px;
             --border-radius-md: 8px;
             --border-radius-lg: 16px;
             --border-radius-circle: 50%;
-
             /* Spacing */
-            --space-xs: 0.5rem; /* 8px */
-            --space-sm: 1rem;   /* 16px */
-            --space-md: 1.5rem; /* 24px */
-            --space-lg: 2.5rem; /* 40px */
-            --space-xl: 4rem;   /* 64px */
-
-            /* Grid Background */
-             --grid-size: 30px; /* Kích thước ô lưới */
-             --grid-line-color: rgba(var(--color-primary-rgb), 0.08); /* Màu hồng primary rất mờ */
-             --grid-line-width: 1px; /* Độ dày đường kẻ */
+            --space-xs: 0.5rem; --space-sm: 1rem; --space-md: 1.5rem; --space-lg: 2.5rem; --space-xl: 4rem;
         }
-
-        html {
-            font-size: 16px;
-            scroll-behavior: smooth;
-        }
-
-        /* === GRID BACKGROUND & OVERLAY === */
+        html { font-size: 16px; scroll-behavior: smooth; }
         body {
-            font-family: var(--font-primary);
-            color: var(--color-text-primary);
-            background-color: var(--color-bg-dark); /* Màu nền đen chính */
-            background-image:
-                linear-gradient(to right, var(--grid-line-color) var(--grid-line-width), transparent var(--grid-line-width)),
-                linear-gradient(to bottom, var(--grid-line-color) var(--grid-line-width), transparent var(--grid-line-width));
-            background-size: var(--grid-size) var(--grid-size); /* Kích thước lặp lại của lưới */
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: var(--space-sm);
-            overflow-x: hidden;
-            position: relative;
-            line-height: 1.6;
+            font-family: var(--font-primary); color: var(--color-text-primary);
+            background-color: var(--color-bg-dark);
+            background-image: linear-gradient(to right, var(--grid-line-color) var(--grid-line-width), transparent var(--grid-line-width)),
+                              linear-gradient(to bottom, var(--grid-line-color) var(--grid-line-width), transparent var(--grid-line-width));
+            background-size: var(--grid-size) var(--grid-size);
+            min-height: 100vh; display: flex; justify-content: center; align-items: center;
+            padding: var(--space-sm); overflow-x: hidden; position: relative; line-height: 1.6;
         }
-
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+        body::before { /* Subtle Scanline Overlay */
+            content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="4" height="4" viewBox="0 0 4 4"><path fill="%23cccccc" fill-opacity="0.02" d="M0 0h2v2H0zM2 2h2v2H0z"></path></svg>');
-            opacity: 0.6;
-            pointer-events: none;
-            z-index: -1;
-            animation: scanlines 15s linear infinite;
+            opacity: 0.6; pointer-events: none; z-index: -1; animation: scanlines 15s linear infinite;
         }
-
-        @keyframes scanlines {
-            0% { background-position: 0 0; }
-            100% { background-position: 0 150px; }
-        }
+        @keyframes scanlines { 0% { background-position: 0 0; } 100% { background-position: 0 150px; } }
 
         /* === MAIN CONTAINER === */
         #container {
-            background-color: rgba(16, 16, 16, 0.6);
-            backdrop-filter: blur(10px) saturate(150%);
-            -webkit-backdrop-filter: blur(10px) saturate(150%);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: var(--border-radius-lg);
-            padding: var(--space-lg) var(--space-md);
-            max-width: 450px;
-            width: 100%;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5),
-                        inset 0 0 15px rgba(var(--color-primary-rgb), 0.1);
-            position: relative;
-            overflow: hidden;
-            transition: transform var(--transition-speed-normal) ease-out,
-                        box-shadow var(--transition-speed-normal) ease-out;
-            transform-style: preserve-3d;
-            opacity: 0; /* JS control */
-            transform: translateY(20px); /* JS control */
+            background-color: rgba(16, 16, 16, 0.6); backdrop-filter: blur(10px) saturate(150%); -webkit-backdrop-filter: blur(10px) saturate(150%);
+            border: 1px solid rgba(255, 255, 255, 0.1); border-radius: var(--border-radius-lg);
+            padding: var(--space-lg) var(--space-md); max-width: 450px; width: 100%;
+            text-align: center; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 0 15px rgba(var(--color-primary-rgb), 0.1);
+            position: relative; overflow: hidden; transform-style: preserve-3d;
+            opacity: 0; transform: translateY(20px); /* Controlled by JS */
+            display: flex; flex-direction: column;
         }
 
         /* === PROFILE SECTION === */
-        #profile {
-            margin-bottom: var(--space-md);
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+        #profile { margin-bottom: var(--space-sm); position: relative; display: flex; flex-direction: column; align-items: center; }
+        #profile-image-wrapper { position: relative; width: 120px; height: 120px; margin-bottom: var(--space-sm); }
+        #profile-image-wrapper::before { /* Avatar Glow */
+            content: ''; position: absolute; inset: -5px; border-radius: var(--border-radius-circle);
+            background: conic-gradient(from 90deg, transparent 0%, var(--color-secondary) 25%, var(--color-primary) 50%, var(--color-secondary) 75%, transparent 100%);
+            filter: blur(15px); z-index: -1; animation: rotateGlow 5s linear infinite; opacity: 0.7;
         }
+        @keyframes rotateGlow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        #profile img#avatar { width: 100%; height: 100%; object-fit: cover; border-radius: var(--border-radius-circle); border: 3px solid var(--color-primary); padding: 3px; background-color: var(--color-bg-dark); transition: transform var(--transition-speed-normal) ease, box-shadow var(--transition-speed-normal) ease; cursor: pointer; position: relative; z-index: 1; }
+        #profile img#avatar:hover { transform: scale(1.05) rotate(2deg); box-shadow: 0 0 20px var(--color-primary); }
+        #profile p#username { font-weight: 500; font-size: 1.1rem; color: var(--color-text-primary); margin-top: var(--space-xs); font-family: var(--font-secondary); letter-spacing: 1px; text-shadow: 0 0 5px var(--color-secondary), 1px 1px 1px rgba(0,0,0,0.5); margin-bottom: var(--space-xs); }
+        .glitch-text { position: relative; text-shadow: 0.05em 0 0 var(--color-glitch-1), -0.025em -0.05em 0 var(--color-glitch-2), 0.025em 0.05em 0 var(--color-glitch-1); animation: glitchAnim 0.5s infinite alternate; }
+        @keyframes glitchAnim { 0%{text-shadow:.05em 0 0 var(--color-glitch-1),-.05em -.025em 0 var(--color-glitch-2),-.025em .05em 0 var(--color-glitch-1)}25%{-0.05em -0.025em 0 var(--color-glitch-1),0.025em 0.025em 0 var(--color-glitch-2),-0.05em -0.05em 0 var(--color-glitch-1)}50%{text-shadow:.025em .05em 0 var(--color-glitch-1),.05em 0 0 var(--color-glitch-2),0 -.05em 0 var(--color-glitch-1)}75%{text-shadow:-.05em 0 0 var(--color-glitch-1),-.025em -.025em 0 var(--color-glitch-2),-.025em -.05em 0 var(--color-glitch-1)}100%{text-shadow:-.025em 0 0 var(--color-glitch-1),.025em -.025em 0 var(--color-glitch-2),.05em .05em 0 var(--color-glitch-1)} }
 
-        #profile-image-wrapper {
-            position: relative;
-            width: 120px;
-            height: 120px;
-            margin-bottom: var(--space-sm);
-        }
+        /* === CLOCK STYLES === */
+        #clock { font-family: var(--font-secondary); font-size: 0.9rem; color: var(--color-text-secondary); letter-spacing: 2px; margin-bottom: var(--space-md); opacity: 0; transform: translateY(10px); text-shadow: 0 0 3px rgba(var(--color-primary-rgb), 0.3); }
 
-        #profile-image-wrapper::before {
-            content: '';
-            position: absolute;
-            inset: -5px;
-            border-radius: var(--border-radius-circle);
-            background: conic-gradient(
-                from 90deg,
-                transparent 0%,
-                var(--color-secondary) 25%,
-                var(--color-primary) 50%,
-                var(--color-secondary) 75%,
-                transparent 100%
-            );
-            filter: blur(15px);
-            z-index: -1;
-            animation: rotateGlow 5s linear infinite;
-            opacity: 0.7;
-        }
-
-        @keyframes rotateGlow {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        #profile img#avatar {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: var(--border-radius-circle);
-            border: 3px solid var(--color-primary);
-            padding: 3px;
-            background-color: var(--color-bg-dark);
-            transition: transform var(--transition-speed-normal) ease,
-                        box-shadow var(--transition-speed-normal) ease;
-            cursor: pointer;
-            position: relative;
-            z-index: 1;
-        }
-
-        #profile img#avatar:hover {
-            transform: scale(1.05) rotate(2deg);
-            box-shadow: 0 0 20px var(--color-primary);
-        }
-
-        #profile p {
-            font-weight: 500;
-            font-size: 1.1rem;
-            color: var(--color-text-primary);
-            margin-top: var(--space-xs);
-            font-family: var(--font-secondary);
-            letter-spacing: 1px;
-            text-shadow: 0 0 5px var(--color-secondary),
-                         1px 1px 1px rgba(0,0,0,0.5);
-        }
-
-        .glitch-text {
-            position: relative;
-            text-shadow: 0.05em 0 0 var(--color-glitch-1),
-                         -0.025em -0.05em 0 var(--color-glitch-2),
-                         0.025em 0.05em 0 var(--color-glitch-1);
-            animation: glitchAnim 0.5s infinite alternate;
-        }
-
-        @keyframes glitchAnim {
-          0% { text-shadow: 0.05em 0 0 var(--color-glitch-1), -0.05em -0.025em 0 var(--color-glitch-2), -0.025em 0.05em 0 var(--color-glitch-1); }
-          25% { text-shadow: -0.05em -0.025em 0 var(--color-glitch-1), 0.025em 0.025em 0 var(--color-glitch-2), -0.05em -0.05em 0 var(--color-glitch-1); }
-          50% { text-shadow: 0.025em 0.05em 0 var(--color-glitch-1), 0.05em 0 0 var(--color-glitch-2), 0 -0.05em 0 var(--color-glitch-1); }
-          75% { text-shadow: -0.05em 0 0 var(--color-glitch-1), -0.025em -0.025em 0 var(--color-glitch-2), -0.025em -0.05em 0 var(--color-glitch-1); }
-          100% { text-shadow: -0.025em 0 0 var(--color-glitch-1), 0.025em -0.025em 0 var(--color-glitch-2), 0.05em 0.05em 0 var(--color-glitch-1); }
-        }
+        /* === AUDIO PLAYER STYLES === */
+        #audio-player { background-color: rgba(var(--color-primary-rgb), 0.05); border: 1px solid rgba(var(--color-primary-rgb), 0.2); border-radius: var(--border-radius-md); padding: var(--space-sm); margin: 0 0 var(--space-md) 0; display: flex; align-items: center; gap: var(--space-sm); opacity: 0; transform: translateY(10px); box-shadow: inset 0 0 5px rgba(var(--color-primary-rgb), 0.1); }
+        #audio-player button#play-pause-btn { background: none; border: none; color: var(--color-secondary); font-size: 2.2rem; cursor: pointer; padding: 0 var(--space-xs) 0 0; display: flex; align-items: center; justify-content: center; transition: color var(--transition-speed-fast) ease, transform var(--transition-speed-fast) ease; line-height: 1; }
+        #audio-player button#play-pause-btn:hover, #audio-player button#play-pause-btn:focus { color: var(--color-primary); transform: scale(1.1); outline: none; }
+        #audio-player button#play-pause-btn ion-icon { display: block; }
+        #audio-player .track-info { flex-grow: 1; text-align: left; overflow: hidden; }
+        #audio-player #track-title { display: block; font-size: 0.85rem; color: var(--color-text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-bottom: var(--space-xs); font-family: var(--font-secondary); letter-spacing: 0.5px; }
+        #audio-player .progress-container { width: 100%; height: 8px; background-color: rgba(0, 0, 0, 0.3); border-radius: var(--border-radius-sm); cursor: pointer; overflow: hidden; position: relative; border: 1px solid rgba(var(--color-primary-rgb), 0.1); }
+        #audio-player #progress-bar { width: 0%; height: 100%; background-color: var(--color-primary); border-radius: var(--border-radius-sm); transition: width 0.1s linear; box-shadow: 0 0 8px 1px var(--color-primary); }
 
         /* === LINKS LIST === */
-        #links ul {
-            list-style: none;
-            padding: 0;
-            margin: var(--space-lg) 0;
-            display: flex;
-            flex-direction: column;
-            gap: var(--space-sm);
-        }
+        #links ul { list-style: none; padding: 0; margin: 0 0 var(--space-md) 0; display: flex; flex-direction: column; gap: var(--space-sm); }
+        #links li { opacity: 0; transform: translateX(-20px); }
+        #links a { display: block; padding: var(--space-sm) var(--space-md); text-decoration: none; color: var(--color-text-primary); background-color: rgba(var(--color-primary-rgb), 0.1); border: 1px solid rgba(var(--color-primary-rgb), 0.5); border-radius: var(--border-radius-sm); font-weight: 500; transition: all var(--transition-speed-fast) ease-out; position: relative; overflow: hidden; z-index: 1; will-change: transform, background-color, box-shadow; }
+        #links a::before { /* Scanline Hover Effect */ content: ""; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(var(--color-primary-rgb), 0.4), transparent); transition: left var(--transition-speed-normal) ease-out; z-index: -1; }
+        #links a:hover, #links a:focus { background-color: rgba(var(--color-primary-rgb), 0.25); border-color: var(--color-primary); color: #fff; transform: scale(1.03); box-shadow: 0 0 15px rgba(var(--color-primary-rgb), 0.4); outline: none; }
+        #links a:hover::before, #links a:focus::before { left: 100%; }
+        #links a:active { transform: scale(0.98); background-color: rgba(var(--color-primary-rgb), 0.3); }
 
-        #links li {
-             opacity: 0; /* JS control */
-             transform: translateX(-20px); /* JS control */
-        }
-
-        #links a {
-            display: block;
-            padding: var(--space-sm) var(--space-md);
-            text-decoration: none;
-            color: var(--color-text-primary);
-            background-color: rgba(var(--color-primary-rgb), 0.1);
-            border: 1px solid rgba(var(--color-primary-rgb), 0.5);
-            border-radius: var(--border-radius-sm);
-            font-weight: 500;
-            transition: all var(--transition-speed-fast) ease-out;
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-            will-change: transform, background-color, box-shadow;
-        }
-
-        #links a::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(var(--color-primary-rgb), 0.4), transparent);
-            transition: left var(--transition-speed-normal) ease-out;
-            z-index: -1;
-        }
-
-        #links a:hover,
-        #links a:focus {
-            background-color: rgba(var(--color-primary-rgb), 0.25);
-            border-color: var(--color-primary);
-            color: #fff;
-            transform: scale(1.03);
-            box-shadow: 0 0 15px rgba(var(--color-primary-rgb), 0.4);
-            outline: none;
-        }
-
-        #links a:hover::before,
-        #links a:focus::before {
-            left: 100%;
-        }
-
-        #links a:active {
-             transform: scale(0.98);
-             background-color: rgba(var(--color-primary-rgb), 0.3);
-        }
-
-        /* === SOCIAL LINKS (Updated) === */
-        #social-links {
-            display: flex;
-            justify-content: center;
-            gap: var(--space-md);
-            margin-top: var(--space-lg);
-            padding: var(--space-md) 0;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            opacity: 0; /* JS control */
-            transform: translateY(20px); /* JS control */
-        }
-
-        #social-links a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--color-text-secondary);
-            font-size: 1.7rem; /* Slightly smaller icon to fit better in circle */
-            /* --- CẬP NHẬT Ở ĐÂY --- */
-            width: 42px; /* Kích thước cố định (Width = Height) */
-            height: 42px; /* Kích thước cố định (Width = Height) */
-            border-radius: var(--border-radius-circle); /* Bo tròn 50% */
-            /* --- HẾT CẬP NHẬT --- */
-            text-decoration: none; /* Ensure no underlines */
-            transition: all var(--transition-speed-fast) ease; /* Transition mọi thứ */
-            will-change: transform, color, background-color; /* Optimize */
-        }
-
-        #social-links a:hover,
-        #social-links a:focus {
-            color: var(--color-primary);
-            transform: translateY(-3px) scale(1.1);
-            outline: none;
-            /* --- CẬP NHẬT Ở ĐÂY --- */
-            background-color: rgba(var(--color-primary-rgb), 0.1); /* Nền mờ khi hover/focus */
-            /* --- HẾT CẬP NHẬT --- */
-        }
-
-        #social-links ion-icon {
-            display: block; /* Giúp căn giữa tốt hơn */
-        }
+        /* === SOCIAL LINKS === */
+        #social-links { display: flex; justify-content: center; gap: var(--space-md); margin-top: 0; padding: var(--space-md) 0; border-top: 1px solid rgba(255, 255, 255, 0.1); opacity: 0; transform: translateY(20px); }
+        #social-links a { display: inline-flex; align-items: center; justify-content: center; color: var(--color-text-secondary); font-size: 1.7rem; width: 42px; height: 42px; border-radius: var(--border-radius-circle); text-decoration: none; transition: all var(--transition-speed-fast) ease; will-change: transform, color, background-color; }
+        #social-links a:hover, #social-links a:focus { color: var(--color-primary); transform: translateY(-3px) scale(1.1); outline: none; background-color: rgba(var(--color-primary-rgb), 0.1); }
+        #social-links ion-icon { display: block; }
 
         /* === FOOTER === */
-        footer {
-            margin-top: var(--space-lg);
-            font-size: 0.85rem;
-            color: var(--color-text-secondary);
-             opacity: 0; /* JS control */
-             transform: translateY(20px); /* JS control */
-        }
-
-        footer a {
-            color: var(--color-accent);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color var(--transition-speed-fast) ease,
-                        text-shadow var(--transition-speed-fast) ease;
-        }
-
-        footer a:hover,
-        footer a:focus {
-            color: var(--color-secondary);
-            text-shadow: 0 0 5px var(--color-secondary);
-            outline: none;
-        }
+        footer { margin-top: var(--space-md); font-size: 0.85rem; color: var(--color-text-secondary); opacity: 0; transform: translateY(20px); }
+        footer a { color: var(--color-accent); text-decoration: none; font-weight: 500; transition: color var(--transition-speed-fast) ease, text-shadow var(--transition-speed-fast) ease; }
+        footer a:hover, footer a:focus { color: var(--color-secondary); text-shadow: 0 0 5px var(--color-secondary); outline: none; }
 
         /* === RESPONSIVENESS === */
-        @media (max-width: 768px) {
-            :root {
-                --space-lg: 2rem;
-                --space-xl: 3rem;
-            }
-            #container {
-                padding: var(--space-md) var(--space-sm);
-                margin: var(--space-sm);
-            }
-            #profile-image-wrapper {
-                width: 100px;
-                height: 100px;
-            }
-             /* Adjust social icon size and spacing */
-             #social-links {
-                gap: var(--space-sm);
-             }
-            #social-links a {
-                 font-size: 1.6rem;
-                 width: 40px;
-                 height: 40px;
-             }
-        }
-        @media (max-width: 380px) {
-             /* Further adjustments for very small screens */
-             #social-links {
-                gap: var(--space-xs);
-             }
-            #social-links a {
-                 font-size: 1.5rem;
-                 width: 36px;
-                 height: 36px;
-             }
-             #links a {
-                padding: var(--space-sm);
-             }
-        }
+        @media (max-width: 768px) { :root { --space-lg: 2rem; --space-xl: 3rem; } #container { padding: var(--space-md) var(--space-sm); margin: var(--space-sm); } #profile-image-wrapper { width: 100px; height: 100px; } #clock {font-size: 0.8rem;} #audio-player{ gap: var(--space-xs); padding: var(--space-sm) var(--space-xs); } #audio-player button#play-pause-btn {font-size: 2rem;} #social-links { gap: var(--space-sm); } #social-links a { font-size: 1.6rem; width: 40px; height: 40px; } }
+        @media (max-width: 380px) { #clock {letter-spacing: 1px;} #social-links { gap: var(--space-xs); } #social-links a { font-size: 1.5rem; width: 36px; height: 36px; } #links a { padding: var(--space-sm); } #audio-player #track-title {font-size: 0.8rem;} }
 
         /* === UTILITY CLASSES === */
-        .visually-hidden {
-          position: absolute;
-          width: 1px;
-          height: 1px;
-          padding: 0;
-          margin: -1px;
-          overflow: hidden;
-          clip: rect(0, 0, 0, 0);
-          white-space: nowrap;
-          border: 0;
-        }
-
+        .visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
     </style>
 </head>
 <body>
-    <!-- Accessible skip link -->
-    <a href="#main-content" class="visually-hidden">Bỏ qua đến nội dung chính</a>
-
+    <!-- Skip link đã được xóa -->
     <div id="container">
         <div id="profile">
-             <div id="profile-image-wrapper">
-                 <img id="avatar"
-                      src="https://niyakipham.github.io/assets/kaguya.jpeg"
-                      alt="Ảnh đại diện anime của Niyaki Phạm"
-                 />
+            <div id="profile-image-wrapper">
+                <img id="avatar" src="https://niyakipham.github.io/assets/kaguya.jpeg" alt="Ảnh đại diện anime của Niyaki Phạm"/>
             </div>
             <p id="username" data-text="@niyakipham">@niyakipham</p>
+            <div id="clock">00:00:00</div>
+        </div>
+
+        <div id="audio-player">
+            <button id="play-pause-btn" aria-label="Phát nhạc">
+                <ion-icon name="play-outline"></ion-icon>
+            </button>
+            <div class="track-info">
+                 <span id="track-title">Đang tải nhạc...</span>
+                 <div class="progress-container">
+                     <div id="progress-bar"></div>
+                 </div>
+            </div>
         </div>
 
         <nav id="links" aria-label="Liên kết chính">
-             <span id="main-content" class="visually-hidden">Nội dung chính</span>
+             <span id="main-content" class="visually-hidden">Nội dung chính</span> <!-- Giữ lại cho accessibility -->
             <ul>
                 <li><a href="https://facebook.com/niyakipham" target="_blank" rel="noopener noreferrer">Facebook</a></li>
                 <li><a href="https://zalo.me/0901574726" target="_blank" rel="noopener noreferrer">Zalo</a></li>
                 <li><a href="https://github.com/niyakipham" target="_blank" rel="noopener noreferrer">Github</a></li>
-                <li><a href="https://discordapp.com/users/niyakipham.off" target="_blank" rel="noopener noreferrer">Discord</a></li>
-                <!-- Kiểm tra lại link Discord nếu cần -->
+                <li><a href="https://discordapp.com/users/niyakipham.off" target="_blank" rel="noopener noreferrer">Discord</a></li> <!-- Link Discord dạng tìm user -->
             </ul>
         </nav>
 
         <div id="social-links" aria-label="Liên kết mạng xã hội khác">
-            <a href="https://github.com/niyakipham" target="_blank" rel="noopener noreferrer" aria-label="Niyaki Phạm trên Github" title="Github">
-                <ion-icon name="logo-github"></ion-icon>
-            </a>
-            <a href="https://instagram.com/niyakipham" target="_blank" rel="noopener noreferrer" aria-label="Niyaki Phạm trên Instagram" title="Instagram">
-                <ion-icon name="logo-instagram"></ion-icon>
-            </a>
-             <a href="https://youtube.com/niyakipham" target="_blank" rel="noopener noreferrer" aria-label="Niyaki Phạm trên Youtube" title="YouTube">
-                <ion-icon name="logo-youtube"></ion-icon>
-            </a>
-             <a href="https://linkedin.com/in/niyakipham" target="_blank" rel="noopener noreferrer" aria-label="Niyaki Phạm trên LinkedIn" title="LinkedIn">
-                 <ion-icon name="logo-linkedin"></ion-icon>
-             </a>
+            <a href="https://github.com/niyakipham" target="_blank" rel="noopener noreferrer" aria-label="Niyaki Phạm trên Github" title="Github"><ion-icon name="logo-github"></ion-icon></a>
+            <a href="https://instagram.com/niyakipham" target="_blank" rel="noopener noreferrer" aria-label="Niyaki Phạm trên Instagram" title="Instagram"><ion-icon name="logo-instagram"></ion-icon></a>
+            <a href="https://youtube.com/niyakipham" target="_blank" rel="noopener noreferrer" aria-label="Niyaki Phạm trên Youtube" title="YouTube"><ion-icon name="logo-youtube"></ion-icon></a>
+            <a href="https://linkedin.com/in/niyakipham" target="_blank" rel="noopener noreferrer" aria-label="Niyaki Phạm trên LinkedIn" title="LinkedIn"><ion-icon name="logo-linkedin"></ion-icon></a>
         </div>
 
         <footer>
              Website được tạo với ❤️ bởi <a href="https://github.com/niyakipham" target="_blank" rel="noopener noreferrer">Niyaki Pham (Phạm Văn Hoàng)</a>
         </footer>
-    </div>
+
+    </div> <!-- End #container -->
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // --- Configuration ---
-            const introStaggerDelay = 80; // Milliseconds delay between each link appearing
-            const glitchEffectOnLoad = true; // Enable/disable username glitch on load
-            const glitchDuration = 1500; // How long the glitch effect lasts in ms
-            const elementsToAnimate = ['#container', '#profile img#avatar', '#profile p', '#links li', '#social-links', 'footer'];
+            // --- CONFIGURATION ---
+            const introStaggerDelay = 80;
+            const glitchEffectOnLoad = true;
+            const glitchDuration = 1500;
+            const audioSrc = 'https://github.com/niyakipham/data/raw/refs/heads/main/music/cac-bai-hat-cua-son-tung-mtp.mp3';
 
-            // Helper function to set primary color RGB for CSS variables
+            // --- GET DOM ELEMENTS ---
+            const clockElement = document.getElementById('clock');
+            const audioPlayer = document.getElementById('audio-player');
+            const playPauseBtn = document.getElementById('play-pause-btn');
+            const playIcon = playPauseBtn ? playPauseBtn.querySelector('ion-icon') : null;
+            const progressBar = document.getElementById('progress-bar');
+            const progressContainer = audioPlayer ? audioPlayer.querySelector('.progress-container') : null;
+            const trackTitleElement = document.getElementById('track-title');
+            const usernameElement = document.getElementById('username');
+            const avatar = document.getElementById('avatar');
+            const mainLinks = document.querySelectorAll('#links a');
+            const socialIcons = document.querySelectorAll('#social-links a ion-icon');
+
+            // --- HELPER: Set Primary Color RGB Variable ---
             function setPrimaryColorRGB() {
-                const containerStyle = getComputedStyle(document.documentElement);
-                let primaryColor = containerStyle.getPropertyValue('--color-primary').trim();
-                let r = 225, g = 29, b = 72; // Default pink fallback
-
+                if (typeof window === 'undefined' || typeof document === 'undefined') return; // Guard for non-browser env
                 try {
-                    // Improve parsing for hex and potentially rgb()/rgba() later
+                    const containerStyle = window.getComputedStyle(document.documentElement);
+                    let primaryColor = containerStyle.getPropertyValue('--color-primary').trim();
+                    let r = 225, g = 29, b = 72; // Default fallback
                     if (primaryColor.startsWith('#')) {
                         const hex = primaryColor.substring(1);
-                        if (hex.length === 3) {
-                            r = parseInt(hex[0] + hex[0], 16);
-                            g = parseInt(hex[1] + hex[1], 16);
-                            b = parseInt(hex[2] + hex[2], 16);
-                        } else if (hex.length === 6) {
-                            r = parseInt(hex.substring(0, 2), 16);
-                            g = parseInt(hex.substring(2, 4), 16);
-                            b = parseInt(hex.substring(4, 6), 16);
-                        }
+                        if (hex.length === 3) { [r, g, b] = [parseInt(hex[0] + hex[0], 16), parseInt(hex[1] + hex[1], 16), parseInt(hex[2] + hex[2], 16)]; }
+                        else if (hex.length === 6) { [r, g, b] = [parseInt(hex.substring(0, 2), 16), parseInt(hex.substring(2, 4), 16), parseInt(hex.substring(4, 6), 16)]; }
                     } else if (primaryColor.startsWith('rgb')) {
-                        // Basic rgb/rgba parsing (can be made more robust)
                         const match = primaryColor.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/);
-                        if (match) {
-                             r = parseInt(match[1]);
-                             g = parseInt(match[2]);
-                             b = parseInt(match[3]);
-                        }
+                        if (match) { [r, g, b] = [parseInt(match[1]), parseInt(match[2]), parseInt(match[3])]; }
                     }
-                    if (isNaN(r) || isNaN(g) || isNaN(b)) {
-                         [r,g,b] = [225, 29, 72]; // Reset to default if parsing failed
-                     }
+                    if (isNaN(r) || isNaN(g) || isNaN(b)) { [r,g,b] = [225, 29, 72]; } // Reset if parsing failed
                     document.documentElement.style.setProperty('--color-primary-rgb', `${r}, ${g}, ${b}`);
-                     console.log(`Primary RGB set to: ${r}, ${g}, ${b}`);
                 } catch (error) {
-                     console.error("Error parsing primary color, using default.", error);
-                    document.documentElement.style.setProperty('--color-primary-rgb', `225, 29, 72`);
-                 }
+                    console.error("Error parsing primary color for CSS var:", error);
+                    document.documentElement.style.setProperty('--color-primary-rgb', `225, 29, 72`); // Fallback
+                }
             }
-
-            // --- Core Animation Timeline ---
-            const tl = anime.timeline({
-                easing: 'easeOutExpo',
-                duration: 800
-            });
-
-            // Execute RGB setup once before animations start referencing the var
             setPrimaryColorRGB();
 
-            // 1. Fade in Container
-            tl.add({
-                targets: '#container',
-                opacity: [0, 1],
-                translateY: [20, 0],
-                duration: 600
-                // Removed begin callback, RGB set beforehand now
-            });
+            // --- REAL-TIME CLOCK ---
+            let clockInterval = null;
+            function updateClock() {
+                if (!clockElement) return;
+                try {
+                    const now = new Date();
+                    const hours = String(now.getHours()).padStart(2, '0');
+                    const minutes = String(now.getMinutes()).padStart(2, '0');
+                    const seconds = String(now.getSeconds()).padStart(2, '0');
+                    clockElement.textContent = `${hours}:${minutes}:${seconds}`;
+                } catch (error) {
+                    console.error("Error updating clock:", error);
+                    if(clockInterval) clearInterval(clockInterval); // Stop interval on error
+                }
+            }
+            if (clockElement) {
+                updateClock(); // Initial call
+                clockInterval = setInterval(updateClock, 1000);
+            }
 
-             // 2. Animate Profile Picture & Name
-             tl.add({
-                 targets: ['#profile-image-wrapper', '#profile p#username'],
-                 opacity: [0, 1],
-                 scale: [0.8, 1],
-                 duration: 700,
-             }, '-=400');
+            // --- AUDIO PLAYER LOGIC ---
+            let audio = null;
+            let isPlaying = false;
+            function initAudio() {
+                if (audio || typeof Audio === 'undefined') return; // Already initialized or Audio not supported
 
-            // 3. Stagger animate links
-            tl.add({
-                targets: '#links li',
-                opacity: [0, 1],
-                translateX: [-20, 0],
-                delay: anime.stagger(introStaggerDelay)
-            }, '-=500');
+                if (!audioSrc) {
+                    console.warn("Audio source URL is missing.");
+                    if(trackTitleElement) trackTitleElement.textContent = 'Không có link nhạc';
+                    if(audioPlayer) audioPlayer.style.display = 'none';
+                    return;
+                }
 
-            // 4. Fade in Social Links & Footer
-            tl.add({
-                targets: ['#social-links', 'footer'],
-                opacity: [0, 1],
-                translateY: [20, 0],
-                duration: 500,
-                easing: 'easeOutSine'
-            }, '-=600');
+                try {
+                    audio = new Audio(audioSrc);
+                    audio.preload = 'metadata';
 
-            // --- Glitch Effect on Username (Optional) ---
-            const usernameElement = document.getElementById('username');
-            if (glitchEffectOnLoad && usernameElement) {
-                 tl.add({
-                    targets: usernameElement,
-                    duration: 100,
-                    complete: () => {
-                         usernameElement.classList.add('glitch-text');
-                         anime({
-                            targets: usernameElement,
-                             opacity: [1, 0.8, 1, 0.9, 1],
-                            duration: glitchDuration,
-                             easing: 'steps(4)',
-                            complete: () => {
-                                 usernameElement.classList.remove('glitch-text');
-                             }
+                    // Attempt to set track title from URL
+                    try {
+                        let decodedSrc = decodeURIComponent(audioSrc);
+                        const urlParts = decodedSrc.split('/');
+                        let filename = urlParts[urlParts.length - 1];
+                        if (filename.toLowerCase().endsWith('.mp3')) {
+                            filename = filename.substring(0, filename.length - 4);
+                        }
+                        if(trackTitleElement) trackTitleElement.textContent = filename.replace(/[_+]/g, ' ').trim() || 'Music Track';
+                    } catch (e) {
+                         if(trackTitleElement) trackTitleElement.textContent = 'Music Track';
+                        console.warn("Could not parse track title from URL:", e);
+                    }
+
+                    // Audio Event Listeners
+                    audio.addEventListener('timeupdate', () => {
+                        if (audio.duration && progressBar) {
+                            progressBar.style.width = `${(audio.currentTime / audio.duration) * 100}%`;
+                        }
+                    });
+                    audio.addEventListener('ended', () => {
+                        if (progressBar) progressBar.style.width = '0%';
+                        isPlaying = false;
+                        if (playIcon) playIcon.setAttribute('name', 'play-outline');
+                        if (playPauseBtn) playPauseBtn.setAttribute('aria-label', 'Phát nhạc');
+                    });
+                    audio.addEventListener('error', (e) => {
+                        console.error("Audio Error:", e, audio.error);
+                        if(trackTitleElement) trackTitleElement.textContent = 'Lỗi phát nhạc';
+                        if(playPauseBtn) playPauseBtn.disabled = true;
+                        if(playIcon) playIcon.setAttribute('name', 'alert-circle-outline');
+                    });
+
+                    // Progress Bar Seeking
+                    if (progressContainer) {
+                        progressContainer.addEventListener('click', (e) => {
+                            if (!audio || !audio.duration) return;
+                            try {
+                                const rect = progressContainer.getBoundingClientRect();
+                                audio.currentTime = ((e.clientX - rect.left) / progressContainer.offsetWidth) * audio.duration;
+                            } catch (seekError) {
+                                console.error("Error seeking audio:", seekError)
+                            }
                         });
-                     }
-                }, '-=200');
-             }
+                    }
 
-            // --- Interactive Animations (Examples) ---
-            const avatar = document.getElementById('avatar');
+                    if (playPauseBtn) playPauseBtn.disabled = false; // Enable button now
+
+                } catch (error) {
+                    console.error("Fatal error creating Audio object:", error);
+                    if(trackTitleElement) trackTitleElement.textContent = 'Không thể tải Player';
+                    if (audioPlayer) audioPlayer.style.display = 'none';
+                }
+            }
+             // Play/Pause Button Click Handler
+            if (playPauseBtn) {
+                playPauseBtn.addEventListener('click', () => {
+                    initAudio(); // Initialize on first click if needed
+                    if (!audio || audio.error || playPauseBtn.disabled) {
+                         console.warn("Play blocked: No audio object, audio error, or button disabled.");
+                         return;
+                    }
+
+                    if (isPlaying) {
+                        audio.pause();
+                        if(playIcon) playIcon.setAttribute('name', 'play-outline');
+                        playPauseBtn.setAttribute('aria-label', 'Phát nhạc');
+                    } else {
+                        const playPromise = audio.play();
+                        if (playPromise !== undefined) {
+                            playPromise.then(() => {
+                                // Playback started successfully
+                                if(playIcon) playIcon.setAttribute('name', 'pause-outline');
+                                playPauseBtn.setAttribute('aria-label', 'Tạm dừng nhạc');
+                            }).catch(error => {
+                                // Handle playback errors (like autoplay policies)
+                                console.error("Audio play() failed:", error);
+                                isPlaying = false; // Correct state if play failed
+                                if(playIcon) playIcon.setAttribute('name', 'play-outline');
+                                playPauseBtn.setAttribute('aria-label', 'Phát nhạc');
+                                if (error.name === 'NotAllowedError' && trackTitleElement) {
+                                    trackTitleElement.textContent = 'Trình duyệt chặn tự động phát. Click lại.';
+                                } else if (trackTitleElement) {
+                                    trackTitleElement.textContent = 'Lỗi Playback';
+                                }
+                            });
+                        } else {
+                             // Fallback for browsers that don't return a promise (older)
+                             if(playIcon) playIcon.setAttribute('name', 'pause-outline');
+                            playPauseBtn.setAttribute('aria-label', 'Tạm dừng nhạc');
+                        }
+                    }
+                    isPlaying = !isPlaying; // Toggle state *after* attempting action
+                });
+            } else {
+                 console.warn("Play/Pause button not found.")
+            }
+
+
+            // --- ANIME.JS ANIMATION TIMELINE ---
+            const tl = anime.timeline({ easing: 'easeOutExpo', duration: 800 });
+            tl.add({ targets: '#container', opacity: [0, 1], translateY: [20, 0], duration: 600 });
+            tl.add({ targets: ['#profile-image-wrapper', '#profile p#username'], opacity: [0, 1], scale: [0.8, 1], duration: 700 }, '-=400');
+            tl.add({ targets: '#clock', opacity: [0, 1], translateY: [10, 0], duration: 400 }, '-=500');
+            tl.add({ targets: '#audio-player', opacity: [0, 1], translateY: [10, 0], duration: 500, easing: 'easeOutSine' }, '-=450');
+            tl.add({ targets: '#links li', opacity: [0, 1], translateX: [-20, 0], delay: anime.stagger(introStaggerDelay) }, '-=500');
+            tl.add({ targets: ['#social-links', 'footer'], opacity: [0, 1], translateY: [20, 0], duration: 500, easing: 'easeOutSine' }, '-=600');
+
+            // --- USERNAME GLITCH EFFECT ---
+            if (glitchEffectOnLoad && usernameElement) {
+                tl.add({
+                    targets: usernameElement, duration: 100, // Short delay before applying
+                    complete: () => {
+                        usernameElement.classList.add('glitch-text');
+                        anime({ targets: usernameElement, opacity: [1, 0.8, 1, 0.9, 1], duration: glitchDuration, easing: 'steps(4)', complete: () => { usernameElement.classList.remove('glitch-text'); } });
+                    }
+                }, '-=200'); // Overlap slightly
+            }
+
+            // --- INTERACTIVE HOVER ANIMATIONS ---
+            // Avatar Hover
             if (avatar) {
                 let avatarHoverAnimation = null;
                 avatar.addEventListener('mouseenter', () => {
-                    if (avatarHoverAnimation) avatarHoverAnimation.pause();
+                    if (avatarHoverAnimation) avatarHoverAnimation.pause(); // Prevent multiple animations
                     avatarHoverAnimation = anime({
                         targets: avatar,
-                        keyframes: [
-                            { rotate: '4deg', scale: 1.06, duration: 150 },
-                            { rotate: '-2deg', scale: 1.04, duration: 150 },
-                            { rotate: '1deg', scale: 1.05, duration: 100 },
-                            { rotate: '0deg', scale: 1.05, duration: 100 }
-                        ],
+                        keyframes: [ { rotate: '4deg', scale: 1.06, duration: 150 }, { rotate: '-2deg', scale: 1.04, duration: 150 }, { rotate: '1deg', scale: 1.05, duration: 100 }, { rotate: '0deg', scale: 1.05, duration: 100 } ],
                         easing: 'easeInOutSine'
                     });
                 });
+                // No mouseleave needed if CSS handles transform reset
             }
-
-            const mainLinks = document.querySelectorAll('#links a');
-             mainLinks.forEach(link => {
-                 link.addEventListener('mouseenter', () => {
-                     anime({
-                         targets: link,
-                         duration: 300,
-                         letterSpacing: ['0px', '0.5px'],
-                         easing: 'easeOutQuad'
-                     });
-                 });
-                link.addEventListener('mouseleave', () => {
-                     anime({
-                         targets: link,
-                         duration: 200,
-                         letterSpacing: ['0.5px', '0px'],
-                         easing: 'easeInQuad'
-                     });
-                 });
-             });
-
-             const socialIcons = document.querySelectorAll('#social-links a ion-icon'); // Target icon directly
-             socialIcons.forEach(icon => {
-                 // Use mouseenter/leave on the PARENT LINK (<a>) but animate the ICON (<ion-icon>)
-                 const parentLink = icon.closest('a');
-
-                 parentLink.addEventListener('mouseenter', () => {
-                    anime.remove(icon); // Remove any existing animation on the icon
-                    anime({
-                         targets: icon, // Animate the icon
-                        keyframes: [
-                             { rotate: '-15deg', duration: 150 }, // Removed scale from here
-                            { rotate: '10deg', duration: 100 },
-                             { rotate: '-5deg', duration: 100 },
-                            { rotate: '0deg', duration: 100 }
-                        ],
-                         easing: 'easeInOutSine',
+            // Main Links Hover
+            mainLinks.forEach(link => {
+                link.addEventListener('mouseenter', () => { anime({ targets: link, duration: 300, letterSpacing: ['0px', '0.5px'], easing: 'easeOutQuad' }); });
+                link.addEventListener('mouseleave', () => { anime({ targets: link, duration: 200, letterSpacing: ['0.5px', '0px'], easing: 'easeInQuad' }); });
+            });
+            // Social Icons Hover (Animate icon, trigger on link hover)
+            socialIcons.forEach(icon => {
+                const parentLink = icon.closest('a');
+                if(parentLink) {
+                    parentLink.addEventListener('mouseenter', () => {
+                        anime.remove(icon); // Remove existing animation on icon
+                        anime({
+                            targets: icon, keyframes: [ { rotate: '-15deg', duration: 150 }, { rotate: '10deg', duration: 100 }, { rotate: '-5deg', duration: 100 }, { rotate: '0deg', duration: 100 } ],
+                            easing: 'easeInOutSine'
                         });
-                });
-                 parentLink.addEventListener('mouseleave', () => {
-                     // Let CSS handle the transform reset on the <a> tag
-                     // Just ensure the JS animation on the icon stops interfering if needed
-                    // anime.remove(icon); // Usually not necessary unless animation runs long
-                });
+                    });
+                     // Let CSS handle scale/translateY reset on parentLink hover/focus
+                }
             });
 
-            console.log("Niyaki Pham's Sci-Fi Profile Initialized! ✨ v3 (Grid + Rounded Social)");
+            console.log("Niyaki Pham's Sci-Fi Profile Initialized! ✨ v6 Final (Skip link removed)");
             console.log("Anime.js version:", anime.version);
 
         }); // End DOMContentLoaded
