@@ -151,20 +151,6 @@
         #audio-player .controls button ion-icon { display: block; }
         #audio-player button#play-pause-btn { font-size: 2.4rem; color: var(--color-secondary); }
         #audio-player button#play-pause-btn:hover, #audio-player button#play-pause-btn:focus { color: var(--color-primary); background-color: rgba(var(--color-primary-rgb), 0.15); }
-         /* Style cho thông báo chờ tương tác */
-         #interaction-prompt {
-             font-size: 0.8rem;
-             color: var(--color-accent);
-             margin-top: -10px; /* Adjust as needed to position below track title */
-             margin-bottom: 10px; /* Add space before controls */
-             text-align: center;
-             display: none; /* Hidden by default */
-             animation: fadeInPulse 1.5s infinite alternate;
-         }
-        @keyframes fadeInPulse {
-             0% { opacity: 0.5; }
-             100% { opacity: 1; }
-        }
 
         /* === LINKS LIST === */
         #links ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: var(--space-sm); }
@@ -229,8 +215,6 @@
         <div id="audio-player">
             <div class="track-info">
                  <span id="track-title" title="Đang tải nhạc...">Đang tải nhạc...</span>
-                 <!-- <<< ADDED: Element cho thông báo chờ tương tác >>> -->
-                 <div id="interaction-prompt">Click để bật nhạc</div>
                  <div class="progress-container">
                      <div id="progress-bar"></div>
                  </div>
@@ -310,7 +294,6 @@
             const progressBar = document.getElementById('progress-bar');
             const progressContainer = audioPlayer?.querySelector('.progress-container');
             const trackTitleElement = document.getElementById('track-title');
-            const interactionPrompt = document.getElementById('interaction-prompt'); // <<< ADDED
             const mainLinks = document.querySelectorAll('#links a');
             const socialLinksContainer = document.getElementById('social-links');
             const footerElement = document.querySelector('footer');
@@ -319,9 +302,8 @@
             let audio = null;
             let currentTrackIndex = 0;
             let isPlaying = false;
-            let userHasInteracted = false; // Track any interaction (used by autoplay logic now)
-            let playAfterLoad = false;
-            let autoplayBlockedByBrowser = false; // <<< ADDED: Flag for blocked autoplay
+            let userHasInteracted = false;
+            let playAfterLoad = false; // Used for autoplay logic
 
             // --- TO-DO LIST STATE ---
             let tasks = [];
@@ -335,149 +317,125 @@
              // ============================
              function generateId() { return Date.now().toString(36) + Math.random().toString(36).substring(2, 7); }
              function formatTimeForDisplay(date) { if (!date || !(date instanceof Date) || isNaN(date)) return null; try { const hours = String(date.getHours()).padStart(2, '0'); const minutes = String(date.getMinutes()).padStart(2, '0'); return `${hours}:${minutes}`; } catch (e) { console.error("Lỗi định dạng giờ:", e); return null; } }
-             function setPrimaryColorRGB() { if (typeof window === 'undefined' || !document?.documentElement) return; try { const style = window.getComputedStyle(document.documentElement); let color = style.getPropertyValue('--color-primary').trim(); let r = 225, g = 29, b = 72; if (color.startsWith('#')) { const hex = color.substring(1); if (hex.length === 3) { r = parseInt(hex[0] + hex[0], 16); g = parseInt(hex[1] + hex[1], 16); b = parseInt(hex[2] + hex[2], 16); } else if (hex.length === 6) { r = parseInt(hex.substring(0, 2), 16); g = parseInt(hex.substring(2, 4), 16); b = parseInt(hex.substring(4, 6), 16); } } else if (color.startsWith('rgb')) { const parts = color.match(/(\d+)/g); if (parts && parts.length >= 3) { r = parseInt(parts[0], 10); g = parseInt(parts[1], 10); b = parseInt(parts[2], 10); } } if (isNaN(r) || isNaN(g) || isNaN(b)) { [r, g, b] = [225, 29, 72]; } document.documentElement.style.setProperty('--color-primary-rgb', `${r}, ${g}, ${b}`); } catch (e) { console.error("Lỗi set color:", e); document.documentElement.style.setProperty('--color-primary-rgb', `225, 29, 72`); } }
+             function setPrimaryColorRGB() { if (typeof window === 'undefined' || !document?.documentElement) return; try { const style = window.getComputedStyle(document.documentElement); let color = style.getPropertyValue('--color-primary').trim(); let r = 225, g = 29, b = 72; if (color.startsWith('#')) { const hex = color.substring(1); if (hex.length === 3) { r = parseInt(hex[0] + hex[0], 16); g = parseInt(hex[1] + hex[1], 16); b = parseInt(hex[2] + hex[2], 16); } else if (hex.length === 6) { r = parseInt(hex.substring(0, 2), 16); g = parseInt(hex.substring(2, 4), 16); b = parseInt(hex.substring(4, 6), 16); } } else if (color.startsWith('rgb')) { const parts = color.match(/(\d+)/g); if (parts && parts.length >= 3) { r = parseInt(parts[0], 10); g = parseInt(parts[1], 10); b = parseInt(parts[2], 10); } } if (isNaN(r) || isNaN(g) || isNaN(b)) { [r, g, b] = [225, 29, 72]; console.warn("Không thể phân tích màu chính, sử dụng màu mặc định."); } document.documentElement.style.setProperty('--color-primary-rgb', `${r}, ${g}, ${b}`); } catch (e) { console.error("Lỗi khi cài đặt màu RGB chính:", e); document.documentElement.style.setProperty('--color-primary-rgb', `225, 29, 72`); } }
 
             // ============================
              // === CLOCK FUNCTIONS ===
             // ============================
-             function updateClock() { if (!clockElement) return; try { const now = new Date(); const hours = String(now.getHours()).padStart(2, '0'); const minutes = String(now.getMinutes()).padStart(2, '0'); const seconds = String(now.getSeconds()).padStart(2, '0'); clockElement.textContent = `${hours}:${minutes}:${seconds}`; } catch (e) { console.error("Lỗi clock:", e); if (clockInterval) clearInterval(clockInterval); } }
+             function updateClock() { if (!clockElement) return; try { const now = new Date(); const hours = String(now.getHours()).padStart(2, '0'); const minutes = String(now.getMinutes()).padStart(2, '0'); const seconds = String(now.getSeconds()).padStart(2, '0'); clockElement.textContent = `${hours}:${minutes}:${seconds}`; } catch (e) { console.error("Lỗi cập nhật đồng hồ:", e); if (clockInterval) clearInterval(clockInterval); } }
 
             // ============================
-             // === AUDIO PLAYER FUNCTIONS (Simplified + Autoplay Handling) ===
+             // === AUDIO PLAYER FUNCTIONS (Simplified) ===
              // ============================
-             function getTrackTitle(track, index) { if (track.title && String(track.title).trim() !== '') { return String(track.title).trim(); } try { const decUrl = decodeURIComponent(track.url); const fileQ = decUrl.substring(decUrl.lastIndexOf('/') + 1); const file = fileQ.split('?')[0]; const noExt = file.replace(/\.(mp3|m4a|ogg|wav)$/i, ''); const title = noExt.replace(/[_\+]/g, ' ').trim(); return title || `Track ${index + 1}`; } catch (e) { return `Track ${index + 1}`; } }
+             function getTrackTitle(track, index) { if (track.title && String(track.title).trim() !== '') { return String(track.title).trim(); } try { const decodedUrl = decodeURIComponent(track.url); const filenameWithQuery = decodedUrl.substring(decodedUrl.lastIndexOf('/') + 1); const filename = filenameWithQuery.split('?')[0]; const nameWithoutExtension = filename.replace(/\.(mp3|m4a|ogg|wav)$/i, ''); const potentialTitle = nameWithoutExtension.replace(/[_\+]/g, ' ').trim(); return potentialTitle || `Track ${index + 1}`; } catch (e) { console.warn("Lỗi khi phân tích tiêu đề từ URL:", track.url, e); return `Track ${index + 1}`; } }
 
-             function loadTrack(index) {
-                 // ...(Existing checks for Audio support and playlist index)
-                 if (typeof Audio === 'undefined') { /*...*/ disableAllControls(); return; }
-                 if (!playlist || index < 0 || index >= playlist.length) { /*...*/ disableAllControls(); return; }
-                 if (audio) { audio.pause(); }
-                 disableMainControls(); isPlaying = false; updatePlayPauseButton(false);
-                 if (progressBar) progressBar.style.width = '0%';
-                 hideInteractionPrompt(); // Hide prompt when loading new track
+            function loadTrack(index) {
+                if (typeof Audio === 'undefined') { console.error("Trình duyệt không hỗ trợ HTML Audio."); if (trackTitleElement) trackTitleElement.textContent = "Trình duyệt không hỗ trợ"; disableAllControls(); return; }
+                if (!playlist || index < 0 || index >= playlist.length) { console.error("Index track không hợp lệ hoặc playlist rỗng:", index); if (trackTitleElement) trackTitleElement.textContent = playlist?.length ? "Lỗi Index" : "Playlist Trống"; disableAllControls(); return; }
+                if (audio) { audio.pause(); }
+                disableMainControls(); isPlaying = false; updatePlayPauseButton(false);
+                if (progressBar) progressBar.style.width = '0%';
 
-                 if (!audio) {
-                      try { audio = new Audio(); audio.preload = 'metadata'; addAudioListeners(); console.log("Audio object created.");
-                      } catch (e) { /*...*/ disableAllControls(); return; }
-                 }
+                if (!audio) {
+                     try { audio = new Audio(); audio.preload = 'metadata'; addAudioListeners(); console.log("Đối tượng Audio đã được tạo.");
+                     } catch (e) { console.error("Không thể tạo đối tượng Audio:", e); if (trackTitleElement) trackTitleElement.textContent = "Lỗi Player"; disableAllControls(); return; }
+                }
 
-                 const track = playlist[index]; currentTrackIndex = index;
-                 console.log(`Loading: Index ${index}`);
-                 const displayTitle = getTrackTitle(track, index);
-                 if (trackTitleElement) { trackTitleElement.textContent = displayTitle; trackTitleElement.title = displayTitle; }
+                const track = playlist[index]; currentTrackIndex = index;
+                console.log(`Chuẩn bị tải: Index ${index}, URL: ${track.url}`);
+                const displayTitle = getTrackTitle(track, index);
+                if (trackTitleElement) { trackTitleElement.textContent = displayTitle; trackTitleElement.title = displayTitle; }
 
-                 if (audio.src) { audio.removeAttribute('src'); audio.load(); }
-                 setTimeout(() => { try { audio.src = track.url; audio.load(); } catch (e) { /*...*/ disableMainControls(); } }, 50);
-             }
+                if (audio.src) { console.log("Clearing previous source."); audio.removeAttribute('src'); audio.load(); }
+                setTimeout(() => { try { console.log(`Đặt nguồn: Index ${index}`); audio.src = track.url; audio.load(); } catch (e) { console.error("Lỗi src/load:", e); if (trackTitleElement) trackTitleElement.textContent = "Lỗi tải track"; disableMainControls(); } }, 50);
+            }
 
-            function updatePrevNextButtonStates() { /* ... (kept the same simple logic) ... */ const canNav = playlist && playlist.length > 1; if(prevBtn) prevBtn.disabled = !canNav; if(nextBtn) nextBtn.disabled = !canNav; }
+            function updatePrevNextButtonStates() {
+                const canNavigate = playlist && playlist.length > 1;
+                if (prevBtn) prevBtn.disabled = !canNavigate;
+                if (nextBtn) nextBtn.disabled = !canNavigate;
+            }
 
             function addAudioListeners() {
                  if (!audio) return;
-                 audio.addEventListener('timeupdate', () => { if (audio.duration && progressBar) { progressBar.style.width = `${(audio.currentTime / audio.duration) * 100}%`; } });
+                 audio.addEventListener('timeupdate', () => { if (audio.duration && !isNaN(audio.duration) && progressBar) { progressBar.style.width = `${(audio.currentTime / audio.duration) * 100}%`; } });
                  audio.addEventListener('ended', handleTrackEnd);
-                 audio.addEventListener('error', (e) => { /* ... (Error handling kept) ... */ console.error("Audio error:", e); let msg = "Lỗi Player"; /*...*/ if (trackTitleElement) trackTitleElement.textContent = msg; disableMainControls(); updatePlayPauseButton(false); isPlaying = false; playAfterLoad = false; hideInteractionPrompt(); });
-                 audio.addEventListener('canplay', () => { console.log(`Track ${currentTrackIndex} can play.`); if (!audio.error) { enableMainControls(); updatePrevNextButtonStates(); if (playAfterLoad) { console.log("Attempting play due to playAfterLoad flag."); playAfterLoad = false; playAudio(); } } else { /*...*/ disableMainControls(); updatePrevNextButtonStates(); } });
-                 audio.addEventListener('loadstart', () => { console.log(`Loading start ${currentTrackIndex}`); });
-                 audio.addEventListener('pause', () => { if (isPlaying) { console.log(`External pause ${currentTrackIndex}.`); isPlaying = false; updatePlayPauseButton(false); playAfterLoad = false; container?.classList.remove('is-playing'); /* Do not hide prompt here, user might still need it */ } });
-                 audio.addEventListener('play', () => { if (!isPlaying) { console.log(`External play ${currentTrackIndex}.`); isPlaying = true; userHasInteracted = true; updatePlayPauseButton(true); container?.classList.add('is-playing'); hideInteractionPrompt(); autoplayBlockedByBrowser = false; } }); // <<< Mark interaction and hide prompt
-                 audio.addEventListener('seeking', () => { /* ... */ });
-            }
+                 audio.addEventListener('error', (e) => { console.error("Sự kiện lỗi Audio:", e); let errorMsg = "Lỗi Player"; if (audio.error) { switch (audio.error.code) { case MediaError.MEDIA_ERR_ABORTED: errorMsg='Tải bị hủy'; break; case MediaError.MEDIA_ERR_NETWORK: errorMsg='Lỗi Mạng'; break; case MediaError.MEDIA_ERR_DECODE: errorMsg='Lỗi Giải Mã'; break; case MediaError.MEDIA_ERR_SRC_NOT_SUPPORTED: errorMsg='URL/Định dạng lỗi'; break; default: errorMsg=`Lỗi mã ${audio.error.code}`; } } else if (e.target?.error) { errorMsg = `Lỗi Target ${e.target.error.code}`; } if (trackTitleElement) trackTitleElement.textContent = errorMsg; disableMainControls(); updatePlayPauseButton(false); isPlaying = false; playAfterLoad = false; });
+                 audio.addEventListener('canplay', () => { console.log(`Track ${currentTrackIndex} can play.`); if (!audio.error) { enableMainControls(); updatePrevNextButtonStates(); if (playAfterLoad) { console.log("`playAfterLoad` true, playing."); playAfterLoad = false; playAudio(); } else { console.log("`playAfterLoad` false."); } } else { console.warn("Canplay, nhưng có lỗi. Controls disabled."); disableMainControls(); updatePrevNextButtonStates(); } });
+                 audio.addEventListener('loadstart', () => { console.log(`Bắt đầu tải ${currentTrackIndex}`); });
+                 audio.addEventListener('pause', () => { if (isPlaying) { console.log(`External pause ${currentTrackIndex}.`); isPlaying = false; updatePlayPauseButton(false); playAfterLoad = false; container?.classList.remove('is-playing'); } });
+                 audio.addEventListener('play', () => { if (!isPlaying) { console.log(`External play ${currentTrackIndex}.`); isPlaying = true; updatePlayPauseButton(true); container?.classList.add('is-playing'); } });
+                 audio.addEventListener('seeking', () => { if (audio.readyState < 2) console.warn('Seeking sớm.'); }); // HAVE_CURRENT_DATA=2
+                 // audio.addEventListener('canplaythrough', () => {}); audio.addEventListener('progress', () => {}); audio.addEventListener('seeked', () => {});
+             }
 
              function handleTrackEnd() {
-                console.log(`Track ${currentTrackIndex} ended.`);
+                console.log(`Track ${currentTrackIndex} kết thúc. Playing next.`);
                 isPlaying = false; updatePlayPauseButton(false); container?.classList.remove('is-playing');
-                playNextTrack(true); // Autoplay next
+                playNextTrack(true); // true = trigger autoplay for next track
              }
 
             function togglePlayPause() {
-                 userHasInteracted = true; // <<< Explicitly mark interaction on toggle
-                 hideInteractionPrompt(); // <<< Hide prompt on manual toggle
-                 autoplayBlockedByBrowser = false; // <<< Reset blocked flag
-
-                 if (!audio || !audio.src || playPauseBtn?.disabled) { return; }
-                 if (audio.readyState < 1 && !isPlaying) { playAfterLoad = true; audio.load(); return; }
-                 if (isPlaying) { pauseAudio(); }
-                 else { playAfterLoad = !isPlaying; playAudio(); }
+                 if (!audio || !audio.src || playPauseBtn?.disabled) { console.warn("Audio/Button chưa sẵn sàng."); return; }
+                 if (audio.readyState < 1 && !isPlaying) { console.log("Audio chưa load, kích hoạt load/play."); playAfterLoad = true; audio.load(); return; }
+                 if (isPlaying) { pauseAudio(); } else { playAfterLoad = !isPlaying; console.log("User play click, set playAfterLoad=", playAfterLoad); playAudio(); }
             }
 
             function playAudio() {
-                 if (!audio || !audio.src || playPauseBtn?.disabled) { playAfterLoad = false; return; }
-                 if (audio.readyState < 1) { audio.load(); playAfterLoad = true; return; }
-
-                 // <<< ADDED: If already know autoplay is blocked, and no user interaction yet, don't try again until interaction >>>
-                 if (autoplayBlockedByBrowser && !userHasInteracted) {
-                    console.warn("Autoplay blocked, waiting for interaction.");
-                    showInteractionPrompt(); // Make sure prompt is shown
-                    playAfterLoad = false; // Don't keep trying automatically
-                    return;
-                 }
-
-                 console.log(`Attempting play ${currentTrackIndex}`);
+                 if (!audio || !audio.src || playPauseBtn?.disabled) { console.warn("Không thể Play."); playAfterLoad = false; return; }
+                 if (audio.readyState < 1) { console.warn(`Audio chưa sẵn sàng (${audio.readyState}). Load.`); audio.load(); playAfterLoad = true; return; }
+                 console.log(`Thực hiện Play ${currentTrackIndex}`);
                  const playPromise = audio.play();
                  if (playPromise !== undefined) {
                     playPromise.then(() => {
-                        console.log(`Playback started ${currentTrackIndex}`); isPlaying = true; userHasInteracted = true; updatePlayPauseButton(true); container?.classList.add('is-playing'); hideInteractionPrompt(); autoplayBlockedByBrowser = false; playAfterLoad = false;
+                        console.log(`Playback thành công ${currentTrackIndex}`); isPlaying = true; userHasInteracted = true; updatePlayPauseButton(true); container?.classList.add('is-playing'); playAfterLoad = false;
                     }).catch(error => {
-                        console.error(`Play() error ${currentTrackIndex}:`, error.name); isPlaying = false; updatePlayPauseButton(false); container?.classList.remove('is-playing'); playAfterLoad = false;
-                         if (error.name === 'NotAllowedError') {
-                             console.warn("Play prevented: User interaction required.");
-                             autoplayBlockedByBrowser = true; // <<< SET FLAG
-                             userHasInteracted = false; // <<< Needs interaction specifically for audio now
-                             showInteractionPrompt();   // <<< SHOW PROMPT
-                             // Optionally add a one-time listener here if preferred over global listener
-                             // setupWaitForInteraction(); // << Call function to add listener
-                         } else if (error.name === 'NotSupportedError') { /*...*/ disableAllControls(); hideInteractionPrompt(); }
-                         else { /*...*/ disableMainControls(); hideInteractionPrompt(); }
+                        console.error(`Lỗi play() ${currentTrackIndex}:`, error.name, error.message); isPlaying = false; updatePlayPauseButton(false); container?.classList.remove('is-playing'); playAfterLoad = false;
+                         if (error.name === 'NotAllowedError') { console.warn("Autoplay bị chặn."); if (trackTitleElement && !trackTitleElement.textContent.includes("Click Play")) { trackTitleElement.textContent += " (Click Play)"; trackTitleElement.title = trackTitleElement.textContent; } }
+                         else if (error.name === 'NotSupportedError') { console.error("Định dạng/Nguồn lỗi."); if (trackTitleElement) trackTitleElement.textContent = "Lỗi Định Dạng/Nguồn"; disableAllControls(); }
+                         else { if (trackTitleElement) trackTitleElement.textContent = `Lỗi Phát: ${error.name}`; disableMainControls(); }
                          updatePrevNextButtonStates();
                      });
-                 } else { /* Fallback - assumes play started */ isPlaying = true; userHasInteracted = true; updatePlayPauseButton(true); container?.classList.add('is-playing'); hideInteractionPrompt(); autoplayBlockedByBrowser = false; playAfterLoad = false; }
+                 } else { console.warn("Play() không trả Promise."); isPlaying = true; userHasInteracted = true; updatePlayPauseButton(true); container?.classList.add('is-playing'); playAfterLoad = false; }
             }
 
-            function pauseAudio() { if (!audio) return; audio.pause(); playAfterLoad = false; /* State handled by 'pause' listener */ }
-            function playNextTrack(triggeredByEnd = false) { /* ... (Kept simple wrap-around logic) ... */ if(!playlist || playlist.length === 0) return; if(playlist.length === 1 && !triggeredByEnd) return; const playNow = isPlaying || triggeredByEnd; const nextIdx = (currentTrackIndex + 1) % playlist.length; console.log(`Next: ${nextIdx}. Autoplay: ${playNow}`); if(playNow) playAfterLoad = true; loadTrack(nextIdx); }
-            function playPrevTrack() { /* ... (Kept simple wrap-around/restart logic) ... */ if(!playlist || playlist.length <= 1) return; const playNow = isPlaying; if (audio && audio.currentTime > 3 && audio.readyState >= 2 && !audio.seeking) { audio.currentTime = 0; if (!isPlaying) playAudio(); return; } const prevIdx = (currentTrackIndex - 1 + playlist.length) % playlist.length; console.log(`Prev: ${prevIdx}. Autoplay: ${playNow}`); if(playNow) playAfterLoad = true; loadTrack(prevIdx); }
-            function updatePlayPauseButton(isPlayingState) { /* ... (Kept visual update) ... */ if (!playIcon || !playPauseBtn) return; const iconName = isPlayingState ? 'pause-outline' : 'play-outline'; const label = isPlayingState ? 'Tạm dừng' : 'Phát'; if (playIcon.getAttribute('name') !== iconName) playIcon.setAttribute('name', iconName); if (playPauseBtn.getAttribute('aria-label') !== label) playPauseBtn.setAttribute('aria-label', label); }
-            function enableMainControls() { if (playPauseBtn) playPauseBtn.disabled = false; if (progressContainer) progressContainer.style.cursor = 'pointer'; }
-            function disableMainControls() { if (playPauseBtn) playPauseBtn.disabled = true; if (prevBtn) prevBtn.disabled = true; if (nextBtn) nextBtn.disabled = true; if (progressContainer) progressContainer.style.cursor = 'default'; }
-            function disableAllControls() { disableMainControls(); }
+            function pauseAudio() {
+                if (!audio) return; console.log(`Thực hiện Pause ${currentTrackIndex}`); audio.pause(); playAfterLoad = false;
+                // Note: State is handled by 'pause' event listener now.
+            }
 
-             // --- Interaction Handling for Autoplay ---
-            function showInteractionPrompt() {
-                 if (interactionPrompt) interactionPrompt.style.display = 'block';
+             function playNextTrack(triggeredByEnd = false) {
+                 if (!playlist || playlist.length === 0) return;
+                 if (playlist.length === 1 && !triggeredByEnd) return; // No skip for single track unless ended
+
+                 const playNow = isPlaying || triggeredByEnd;
+                 const nextIndex = (currentTrackIndex + 1) % playlist.length;
+                 console.log(`Next index: ${nextIndex}. Autoplay: ${playNow}`);
+                 if (playNow) { playAfterLoad = true; }
+                 loadTrack(nextIndex);
              }
-             function hideInteractionPrompt() {
-                 if (interactionPrompt) interactionPrompt.style.display = 'none';
-             }
 
-             // Function to handle the FIRST user interaction IF autoplay was blocked
-             function handleFirstInteraction() {
-                 if (userHasInteracted) return; // Already interacted or manually played
+             function playPrevTrack() {
+                 if (!playlist || playlist.length <= 1) return;
 
-                 console.log("User interaction detected.");
-                 userHasInteracted = true; // Mark interaction occurred
-                 hideInteractionPrompt();  // Hide the prompt
-
-                 // Now, try playing IF audio exists, is loaded enough, and isn't already playing
-                 if (autoplayBlockedByBrowser && audio && !isPlaying && audio.readyState >= 1) {
-                     console.log("Attempting to play audio after interaction.");
-                     playAudio(); // Try playing again now
+                 const playNow = isPlaying;
+                 if (audio && audio.currentTime > 3 && audio.readyState >= 2 && !audio.seeking) {
+                     console.log("Restart track (>3s)."); audio.currentTime = 0; if (!isPlaying) playAudio(); return;
                  }
-                 // Note: Listeners are removed automatically by { once: true }
+
+                 const prevIndex = (currentTrackIndex - 1 + playlist.length) % playlist.length;
+                 console.log(`Prev index: ${prevIndex}. Autoplay: ${playNow}`);
+                 if (playNow) { playAfterLoad = true; }
+                 loadTrack(prevIndex);
              }
 
-            // Add ONE-TIME listeners for the first interaction.
-            // These will call handleFirstInteraction and then remove themselves.
-            function setupWaitForInteraction() {
-                 console.log("Setting up listeners for first user interaction...");
-                 document.addEventListener('click', handleFirstInteraction, { once: true, capture: true });
-                 document.addEventListener('keydown', handleFirstInteraction, { once: true, capture: true });
-                 document.addEventListener('touchstart', handleFirstInteraction, { once: true, capture: true });
-            }
-
+            function updatePlayPauseButton(isPlayingState) { if (!playIcon || !playPauseBtn) return; const iconName = isPlayingState ? 'pause-outline' : 'play-outline'; const label = isPlayingState ? 'Tạm dừng' : 'Phát'; if (playIcon.getAttribute('name') !== iconName) playIcon.setAttribute('name', iconName); if (playPauseBtn.getAttribute('aria-label') !== label) playPauseBtn.setAttribute('aria-label', label); }
+            function enableMainControls() { if (playPauseBtn) playPauseBtn.disabled = false; if (progressContainer) progressContainer.style.cursor = 'pointer'; console.log("Main controls enabled."); }
+            function disableMainControls() { if (playPauseBtn) playPauseBtn.disabled = true; if (prevBtn) prevBtn.disabled = true; if (nextBtn) nextBtn.disabled = true; if (progressContainer) progressContainer.style.cursor = 'default'; console.log("Main controls disabled."); }
+            function disableAllControls() { disableMainControls(); console.log("All controls disabled."); }
 
              // --- Seeking ---
-             if (progressContainer) { progressContainer.addEventListener('click', (e) => { userHasInteracted = true; hideInteractionPrompt(); autoplayBlockedByBrowser = false; /* Interaction! */ if (!audio || !audio.duration || audio.readyState < 1 || playPauseBtn?.disabled) return; try { const rect = progressContainer.getBoundingClientRect(); if (e.clientX < rect.left || e.clientX > rect.right) return; const clickRatio = (e.clientX - rect.left) / progressContainer.offsetWidth; const newTime = Math.max(0, Math.min(audio.duration, clickRatio * audio.duration)); if (!isNaN(newTime)) { audio.currentTime = newTime; if (progressBar) progressBar.style.width = `${(newTime / audio.duration) * 100}%`; } } catch (err) {} }); }
+             if (progressContainer) { progressContainer.addEventListener('click', (e) => { if (!audio || !audio.duration || isNaN(audio.duration) || audio.readyState < 1 ) return; if (playPauseBtn?.disabled) return; try { const rect = progressContainer.getBoundingClientRect(); if (e.clientX < rect.left || e.clientX > rect.right) return; const clickRatio = (e.clientX - rect.left) / progressContainer.offsetWidth; const newTime = Math.max(0, Math.min(audio.duration, clickRatio * audio.duration)); if (!isNaN(newTime)) { console.log(`Seek: ${newTime.toFixed(2)}s`); audio.currentTime = newTime; if (progressBar) progressBar.style.width = `${(newTime / audio.duration) * 100}%`; } } catch (err) { console.error("Seek error:", err); } }); }
 
              // ============================
              // === TO-DO LIST FUNCTIONS (Keep original code) ===
@@ -497,25 +455,22 @@
             // ============================
              // === INITIALIZATION ===
              // ============================
-            console.log("🚀 Init Profile v12.0 (Autoplay Interaction Fix)... ✨"); // Version Bump
+            console.log("🚀 Init Profile v11.0 (Autoplay)... ✨");
             setPrimaryColorRGB();
             if (clockElement) { updateClock(); clockInterval = setInterval(updateClock, 1000); }
-            loadTasks();
+            loadTasks(); // Load tasks & schedules notifications/checks permission
             if (todoForm) todoForm.addEventListener('submit', addTask);
             if (requestPermissionBtn) requestPermissionBtn.addEventListener('click', handleRequestPermission);
 
-            // --- Audio Player Init with Autoplay Attempt ---
             if (playlist && playlist.length > 0) {
                 if (playPauseBtn) playPauseBtn.addEventListener('click', togglePlayPause);
                 if (nextBtn) nextBtn.addEventListener('click', () => playNextTrack(false));
                 if (prevBtn) prevBtn.addEventListener('click', playPrevTrack);
-
-                playAfterLoad = true; // Request autoplay attempt
-                setupWaitForInteraction(); // <<< ADDED: Setup interaction listeners early
-                loadTrack(0); // Load track, 'canplay' will try playAudio
-
+                playAfterLoad = true; // <<< Request Autoplay
+                console.log("Requesting autoplay via playAfterLoad flag.");
+                loadTrack(0); // Start loading, 'canplay' will attempt to play
             } else {
-                 console.warn("Playlist empty."); if (trackTitleElement) trackTitleElement.textContent = "Playlist trống"; disableAllControls();
+                 console.warn("Playlist trống."); if (trackTitleElement) trackTitleElement.textContent = "Playlist trống"; disableAllControls();
             }
 
             // Entrance Animations
@@ -525,18 +480,18 @@
                   .add({ targets: ['#profile-image-wrapper', '#profile p#username'], opacity: [0, 1], scale: [0.8, 1], duration: 600 }, '-=450')
                   .add({ targets: '#clock', opacity: [0, 1], translateY: [10, 0], duration: 400 }, '-=450')
                   .add({ targets: '#todo-section', opacity: [0, 1], translateY: [20, 0], duration: 500 }, '-=350')
-                  .add({ targets: '#audio-player', opacity: [0, 1], translateY: [10, 0], duration: 500 }, '-=350') // Audio player animates in
+                  .add({ targets: '#audio-player', opacity: [0, 1], translateY: [10, 0], duration: 500 }, '-=350')
                   .add({ targets: '#links li', opacity: [0, 1], translateX: [-20, 0], delay: anime.stagger(introStaggerDelay) }, '-=400')
                   .add({ targets: ['#social-links', 'footer'], opacity: [0, 1], translateY: [20, 0], duration: 500 }, '-=400');
-                 if (tasks.length > 0 && todoListElement) { tl.add({ targets: todoListElement.querySelectorAll('li'), delay: anime.stagger(50), duration: 400 }, '-=800'); }
+                 if (tasks.length > 0 && todoListElement) { tl.add({ targets: todoListElement.querySelectorAll('li'), delay: anime.stagger(50), duration: 400 }, '-=800'); /* Use defaults from renderTask */}
                  if (glitchEffectOnLoad && usernameElement) { tl.add({ targets: usernameElement, duration: 1, begin: () => { usernameElement.classList.add('glitch-text'); setTimeout(() => { if (usernameElement) usernameElement.classList.remove('glitch-text'); }, glitchDuration); } }, '-=300'); }
-            } catch (error) { console.error("Anime.js error:", error); /* Fallback styles */ document.querySelectorAll('#container, #profile, #todo-section, #audio-player, #links, #social-links, footer').forEach(el=>el.style.opacity=1); document.querySelectorAll('#todo-list li').forEach(li => {li.style.opacity=1; li.style.transform='none';}); }
+            } catch (error) { console.error("Anime.js init lỗi:", error); /* Fallback styles */ document.querySelectorAll('#container, #profile, #todo-section, #audio-player, #links, #social-links, footer').forEach(el=>el.style.opacity=1); document.querySelectorAll('#todo-list li').forEach(li => {li.style.opacity=1; li.style.transform='none';}); }
 
              // Hover Animations
              if (avatar) { avatar.addEventListener('mouseenter', () => anime({ targets: avatar, scale: 1.08, rotate: 4, duration: 300, easing: 'easeOutBack' })); avatar.addEventListener('mouseleave', () => anime({ targets: avatar, scale: 1, rotate: 0, duration: 400, easing: 'easeOutQuad' })); }
              Array.from(socialLinksContainer?.querySelectorAll('a') || []).forEach(link => { link.addEventListener('mouseenter', () => anime({ targets: link, translateY: -4, scale: 1.15, duration: 250, easing: 'easeOutBack' })); link.addEventListener('mouseleave', () => anime({ targets: link, translateY: 0, scale: 1, duration: 350, easing: 'easeOutQuad' })); });
 
-            console.log("Init complete. Waiting for interaction if needed...");
+            console.log("Initialization complete. Listening...");
             if (typeof anime !== 'undefined') console.log("Anime.js v:", anime.version);
 
          }); // --- DOMContentLoaded End ---
