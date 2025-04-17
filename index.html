@@ -7,11 +7,11 @@
 
     <!-- /// META TIÊU ĐỀ & MÔ TẢ /// -->
     <title>Niyaki Pham | Profile Sci-Fi: Nhạc (MP3 &amp; YouTube), To-Do &amp; Anime</title>
-    <meta name="description" content="Profile cá nhân độc đáo của Niyaki Phạm: Nghe nhạc MP3/YouTube, quản lý To-Do list hẹn giờ và khám phá thế giới Anime.">
+    <meta name="description" content="Profile cá nhân độc đáo của Niyaki Phạm: Nghe nhạc MP3/YouTube, quản lý To-Do list hẹn giờ và khám phá thế giới Anime. Tích hợp Media Session API cho trải nghiệm tốt hơn.">
     <meta name="author" content="Niyaki Pham (Phạm Văn Hoàng)">
 
     <!-- /// META TỪ KHÓA SEO /// -->
-    <meta name="keywords" content="Niyaki Phạm, Niyaki Pham, Phạm Văn Hoàng, Profile cá nhân, Porfolio, Web Developer, Phát nhạc YouTube, YouTube Player API, Music Player, Audio Player, Autoplay music, Real-time Clock, To-Do List, Quản lý công việc, Notification API, Anime Search, Tìm kiếm Anime, Xem Anime Online, Sci-fi profile">
+    <meta name="keywords" content="Niyaki Phạm, Niyaki Pham, Phạm Văn Hoàng, Profile cá nhân, Porfolio, Web Developer, Phát nhạc YouTube, YouTube Player API, Music Player, Audio Player, Autoplay music, Real-time Clock, To-Do List, Quản lý công việc, Notification API, Anime Search, Tìm kiếm Anime, Xem Anime Online, Sci-fi profile, Media Session API, Phát nhạc nền">
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
     <meta name="googlebot" content="index, follow">
 
@@ -27,7 +27,8 @@
     <meta property="og:description" content="Khám phá profile Niyaki Phạm: Playlist nhạc MP3 và YouTube tự động, To-Do list hẹn giờ và công cụ tìm kiếm, xem anime tiện lợi.">
     <meta property="og:type" content="profile">
     <meta property="og:url" content="https://niyakipham.github.io/"> <!-- !! Quan trọng: Thay bằng URL chính thức của bạn !! -->
-    <meta property="og:image" content="https://raw.githubusercontent.com/niyakipham/assets/kaguya.jpeg">
+    <!-- Cập nhật ảnh đại diện nếu bạn muốn nó hiển thị trên màn hình khóa -->
+    <meta property="og:image" content="https://niyakipham.github.io/assets/kaguya.jpeg">
     <meta property="og:image:alt" content="Ảnh đại diện của Niyaki Phạm">
     <meta property="og:locale" content="vi_VN">
     <meta property="profile:username" content="niyakipham">
@@ -36,7 +37,8 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Niyaki Phạm - Profile: Nhạc (MP3/YouTube), To-Do & Anime">
     <meta name="twitter:description" content="Kết nối Niyaki Phạm! Nghe nhạc MP3/YouTube, quản lý công việc, tìm và xem anime yêu thích ngay trên profile độc đáo này.">
-    <meta name="twitter:image" content="https://raw.githubusercontent.com/niyakipham/assets/kaguya.jpeg">
+    <!-- Cập nhật ảnh đại diện nếu bạn muốn nó hiển thị trên màn hình khóa -->
+    <meta name="twitter:image" content="https://niyakipham.github.io/assets/kaguya.jpeg">
     <meta name="twitter:site" content="@niyakipham"> <!-- Thay nếu có -->
     <meta name="twitter:creator" content="@niyakipham"> <!-- Thay nếu có -->
 
@@ -353,6 +355,7 @@
     <div id="container">
         <div id="profile">
              <div id="profile-image-wrapper">
+                 <!-- Ảnh này cũng sẽ được dùng cho Media Session -->
                  <img id="avatar" src="https://niyakipham.github.io/assets/kaguya.jpeg" alt="Ảnh đại diện anime của Niyaki Phạm"/>
             </div>
              <p id="username" data-text="@niyakipham">@niyakipham</p>
@@ -452,7 +455,7 @@
      <!-- === END IFRAME PLAYER CONTAINER === -->
 
     <script>
-        //********* JAVASCRIPT - VERSION 13.0 (YouTube Integration) *********//
+        //********* JAVASCRIPT - VERSION 14.0 (Media Session API Integration) *********//
         document.addEventListener('DOMContentLoaded', () => {
             // --- CONFIGURATION ---
             const introStaggerDelay = 70;
@@ -462,24 +465,26 @@
 
             // --- *** PLAYLIST DATA (MP3 Links & YouTube Video IDs) *** ---
             const playlist = [
-                 // type: 'url' (ngầm định)
-                { type: 'youtube', videoId: '5GUaMOpfmr8', title: 'Tada koe hitsoku' },
-                { type: 'youtube', videoId: 'hE2bHwqqYcc', title: 'Niji' },
-                { type: 'youtube', videoId: 'AZLfAzVy_PM', title: 'Best Firiend' },
-                { type: 'youtube', videoId: 'MW79zgnSF40', title: 'Like I Do' },
-                { type: 'youtube', videoId: '12gmxhEFeBo', title: 'Payphone' },
-                { type: 'youtube', videoId: 'QwiuihFPPok', title: 'Tonight' },
-                { type: 'youtube', videoId: 'HsM9VucuCtw', title: 'Shadow Of The Sun' },
-                { type: 'youtube', videoId: 'mv23MnaNvGM', title: 'Love is Gone' },
-                { type: 'youtube', videoId: 'p7CuxzGWY40', title: 'Tom Frane - Dont Leave' },
-                { type: 'youtube', videoId: 'JzFZVmsZYOA', title: 'Nhạc Lofi Chill Top Xu Hướng 2024 Triệu View ' },
+                { type: 'youtube', videoId: '5GUaMOpfmr8', title: 'Tada Koe Hitotsu (From BORUTO: NARUTO NEXT GENERATIONS)', artist: 'ロクデナシ'}, // Thêm artist nếu có
+                { type: 'youtube', videoId: 'hE2bHwqqYcc', title: 'Niji (From STAND BY ME Doraemon 2)', artist: 'Masaki Suda'},
+                { type: 'youtube', videoId: 'AZLfAzVy_PM', title: 'Best Friend (From Mushoku Tensei)', artist: 'Yuiko Ohara'},
+                { type: 'youtube', videoId: 'MW79zgnSF40', title: 'Like I Do', artist: 'J.Tajor'},
+                { type: 'youtube', videoId: '12gmxhEFeBo', title: 'Payphone', artist: 'Maroon 5 ft. Wiz Khalifa'},
+                { type: 'youtube', videoId: 'QwiuihFPPok', title: 'Tonight', artist: 'NEFFEX'},
+                { type: 'youtube', videoId: 'HsM9VucuCtw', title: 'Shadow Of The Sun', artist: 'Max Elto'},
+                { type: 'youtube', videoId: 'mv23MnaNvGM', title: 'Love Is Gone (Acoustic)', artist: 'SLANDER ft. Dylan Matthew'},
+                { type: 'youtube', videoId: 'p7CuxzGWY40', title: "Don't Leave Me", artist: 'Tom Frane & Polina Grace'},
+                { type: 'youtube', videoId: 'JzFZVmsZYOA', title: 'Lofi Chill 2024 Mix', artist: 'Various Lofi Artists'},
+                 // Thêm các track URL nếu có
+                // { type: 'url', url: 'path/to/your/music.mp3', title: 'Your MP3 Song', artist: 'You' },
             ];
 
             // --- GET DOM ELEMENTS ---
             const container = document.getElementById('container');
             const clockElement = document.getElementById('clock');
             const usernameElement = document.getElementById('username');
-            const avatar = document.getElementById('avatar');
+            const avatar = document.getElementById('avatar'); // Sẽ dùng cho Media Session
+            const avatarSrc = avatar?.src; // Lấy src ảnh đại diện
             const todoSection = document.getElementById('todo-section');
             const todoForm = document.getElementById('todo-form');
             const todoInput = document.getElementById('todo-input');
@@ -512,7 +517,7 @@
             const youtubePlayerContainer = document.getElementById('youtube-player-container'); // YouTube player will attach here
 
             // --- STATE VARIABLES ---
-            let audio = null;
+            let audio = null; // HTMLAudioElement for 'url' type
             let currentTrackIndex = -1;
             let isPlaying = false;
             let userHasInteracted = false;
@@ -522,11 +527,12 @@
             let clockInterval = null;
             let allEpisodeRecords = [];
             let currentAnimeTitle = '';
-            let youtubePlayer = null;
+            let youtubePlayer = null; // YT.Player instance
             let youtubeApiReady = false;
             let youtubePlayerReady = false;
             let youtubeProgressInterval = null;
             let currentPlayerType = 'none'; // 'url', 'youtube', 'none'
+            const hasMediaSession = ('mediaSession' in navigator); // <<<--- **[MỚI]** Kiểm tra hỗ trợ Media Session
 
             // ============================
             // === HELPER FUNCTIONS ===
@@ -537,6 +543,57 @@
             function splitCsvLine(line) { const result = []; let current = ''; let inQuotes = false; for (let i = 0; i < line.length; i++) { const char = line[i]; if (char === '"') { if (inQuotes && line[i + 1] === '"') { current += '"'; i++; } else { inQuotes = !inQuotes; } } else if (char === ',' && !inQuotes) { result.push(current); current = ''; } else { current += char; } } result.push(current); return result; }
             function parseCSV_NameEpisodeLink(csvText) { if (!csvText) return []; const lines = csvText.trim().split('\n'); if (lines.length <= 1) return []; const header = lines[0].split(',').map(h => h.trim().toLowerCase()); const data = []; const nameIndex = header.indexOf('name'); const episodeNameIndex = header.indexOf('episodes'); const linkIndex = header.indexOf('link'); if (nameIndex===-1 || episodeNameIndex===-1 || linkIndex===-1) { console.error("❌ Critical Error: CSV must contain 'name', 'episodes', 'link'. Header:", header.join(', ')); if (resultsContainer) resultsContainer.innerHTML = '<p class="placeholder-text error">Lỗi cấu trúc file dữ liệu.</p>'; return []; } for (let i = 1; i < lines.length; i++) { const line = lines[i].trim(); if (!line) continue; try { const parts = splitCsvLine(line); if (parts.length <= Math.max(nameIndex, episodeNameIndex, linkIndex)) { console.warn(`⚠️ Skipping line ${i+1}: Not enough columns. "${line.substring(0,50)}..."`); continue; } const animeName = parts[nameIndex]?.trim(); const episodeName = parts[episodeNameIndex]?.trim(); const link = parts[linkIndex]?.trim(); if (!animeName || !episodeName) { console.warn(`⚠️ Skipping line ${i+1}: Missing name/episode. Name: '${animeName}', Ep: '${episodeName}'`); continue; } data.push({ animeName: animeName, episodeName: episodeName, link: link || '#' }); } catch (e) { console.error(`❌ Error CSV line ${i+1}: "${line.substring(0, 100)}...". Error: ${e.message}`); } } console.log(`ℹ️ Parsed ${data.length} episode records.`); return data; }
             function formatTimeForDisplayYT(seconds) { if (isNaN(seconds) || seconds < 0) return '0:00'; const minutes = Math.floor(seconds / 60); const secs = Math.floor(seconds % 60); return `${minutes}:${secs < 10 ? '0' : ''}${secs}`; }
+
+            // ============================
+            // === MEDIA SESSION API FUNCTIONS === [MỚI]
+            // ============================
+            function updateMediaSessionMetadata() {
+                if (!hasMediaSession || currentTrackIndex < 0 || currentTrackIndex >= playlist.length) return;
+
+                const track = playlist[currentTrackIndex];
+                const metadata = {
+                    title: track.title || 'Unknown Title',
+                    artist: track.artist || 'Niyaki Pham', // Sử dụng tên bạn nếu không có artist
+                    album: 'Niyaki Pham\'s Playlist', // Có thể tùy chỉnh
+                    artwork: [
+                        // Cung cấp nhiều kích thước nếu có, ưu tiên ảnh avatar
+                        { src: avatarSrc || 'https://via.placeholder.com/96', sizes: '96x96', type: 'image/jpeg' }, // Ảnh đại diện
+                        { src: avatarSrc || 'https://via.placeholder.com/128', sizes: '128x128', type: 'image/jpeg' },
+                        // { src: 'path/to/larger/image.png', sizes: '256x256', type: 'image/png' },
+                        // { src: 'path/to/largest/image.png', sizes: '512x512', type: 'image/png' },
+                    ]
+                };
+
+                try {
+                     navigator.mediaSession.metadata = new MediaMetadata(metadata);
+                     console.log('🎧 Media Session metadata updated:', metadata.title);
+                } catch (error) {
+                     console.error('Failed to set Media Session metadata:', error);
+                }
+             }
+
+            function setupMediaSessionActions() {
+                 if (!hasMediaSession) return;
+
+                 // Action handlers
+                try { navigator.mediaSession.setActionHandler('play', playAudio); } catch (e) { console.warn("Could not set 'play' action:", e); }
+                try { navigator.mediaSession.setActionHandler('pause', pauseAudio); } catch (e) { console.warn("Could not set 'pause' action:", e); }
+                 // Chỉ thiết lập next/prev nếu playlist có nhiều hơn 1 bài
+                 if (playlist.length > 1) {
+                    try { navigator.mediaSession.setActionHandler('previoustrack', playPrevTrack); } catch (e) { console.warn("Could not set 'previoustrack' action:", e); }
+                    try { navigator.mediaSession.setActionHandler('nexttrack', () => playNextTrack(false)); } catch (e) { console.warn("Could not set 'nexttrack' action:", e); }
+                 } else {
+                    try { navigator.mediaSession.setActionHandler('previoustrack', null); } catch (e) {} // Xóa handler cũ nếu có
+                    try { navigator.mediaSession.setActionHandler('nexttrack', null); } catch (e) {}
+                 }
+                 // Các action khác có thể thêm: seekbackward, seekforward, seekto, stop
+            }
+
+            function updateMediaSessionPlaybackState() {
+                if (!hasMediaSession) return;
+                navigator.mediaSession.playbackState = isPlaying ? 'playing' : 'paused';
+                 console.log(`🎧 Media Session state updated: ${navigator.mediaSession.playbackState}`);
+             }
 
             // ============================
             // === YOUTUBE API FUNCTIONS ===
@@ -552,6 +609,11 @@
             window.onYouTubeIframeAPIReady = function() {
                 console.log("✅ YouTube API Script Ready");
                 youtubeApiReady = true;
+                // If a track was waiting for the API, try loading it now
+                 if (currentPlayerType === 'youtube' && !youtubePlayer && currentTrackIndex >= 0) {
+                    console.log("YouTube API ready, attempting to load pending track:", currentTrackIndex);
+                    loadTrack(currentTrackIndex);
+                 }
             }
 
             function onPlayerReady(event) {
@@ -560,6 +622,9 @@
                  enableMainControls();
                  updatePrevNextButtonStates();
                  setYouTubeVolume(audio?.volume ?? 0.8); // Sync volume
+                 updateMediaSessionMetadata(); // <<<--- **[MỚI]** Cập nhật metadata khi player sẵn sàng
+                 updateMediaSessionPlaybackState(); // <<<--- **[MỚI]** Cập nhật trạng thái
+                 setupMediaSessionActions(); // <<<--- **[MỚI]** Thiết lập actions
                  if (playAfterLoad) {
                      console.log("onPlayerReady: playAfterLoad=true -> Playing YT video...");
                      playAudio();
@@ -580,6 +645,7 @@
                          updatePlayPauseButton(true);
                          container?.classList.add('is-playing');
                          if (!youtubeProgressInterval) startYouTubeProgressTracking();
+                         updateMediaSessionPlaybackState(); // <<<--- **[MỚI]** Cập nhật trạng thái
                      }
                 } else if (state === YT.PlayerState.PAUSED) {
                      if (isPlaying) {
@@ -587,22 +653,26 @@
                          updatePlayPauseButton(false);
                          container?.classList.remove('is-playing');
                         if (youtubeProgressInterval) { clearInterval(youtubeProgressInterval); youtubeProgressInterval = null; }
+                         updateMediaSessionPlaybackState(); // <<<--- **[MỚI]** Cập nhật trạng thái
                      }
                  } else if (state === YT.PlayerState.ENDED) {
                      isPlaying = false; youtubePlayerReady = false; // Treat as not ready for new track load
                      updatePlayPauseButton(false); container?.classList.remove('is-playing');
                      if (progressBar) progressBar.style.width = '100%';
                      if (youtubeProgressInterval) { clearInterval(youtubeProgressInterval); youtubeProgressInterval = null; }
+                     updateMediaSessionPlaybackState(); // <<<--- **[MỚI]** Cập nhật trạng thái
                      playNextTrack(true); // Auto-advance
                  } else if (state === YT.PlayerState.BUFFERING) {
                      // Optionally handle buffering state (e.g., show loading indicator)
                  } else if (state === YT.PlayerState.CUED) {
-                     if (!youtubePlayerReady) youtubePlayerReady = true;
-                     enableMainControls(); updatePrevNextButtonStates();
-                     updateYouTubeProgressAndDuration();
-                     if (youtubeProgressInterval && !isPlaying) { clearInterval(youtubeProgressInterval); youtubeProgressInterval = null; }
+                    if (!youtubePlayerReady) youtubePlayerReady = true;
+                     if (!isPlaying) { updateMediaSessionPlaybackState(); } // <<<--- **[MỚI]** Đảm bảo trạng thái đúng
+                    enableMainControls(); updatePrevNextButtonStates();
+                    updateYouTubeProgressAndDuration();
+                    updateMediaSessionMetadata(); // <<<--- **[MỚI]** Cập nhật metadata khi video được cue
+                    if (youtubeProgressInterval && !isPlaying) { clearInterval(youtubeProgressInterval); youtubeProgressInterval = null; }
                  } else if (state === YT.PlayerState.UNSTARTED) {
-                      if (youtubeProgressInterval) { clearInterval(youtubeProgressInterval); youtubeProgressInterval = null; }
+                    if (youtubeProgressInterval) { clearInterval(youtubeProgressInterval); youtubeProgressInterval = null; }
                  }
 
                 // General re-enabling of controls if player is interactive
@@ -624,6 +694,7 @@
                  isPlaying = false; youtubePlayerReady = false; currentPlayerType = 'none';
                  updatePlayPauseButton(false); container?.classList.remove('is-playing');
                  if (youtubeProgressInterval) { clearInterval(youtubeProgressInterval); youtubeProgressInterval = null; }
+                 updateMediaSessionPlaybackState(); // <<<--- **[MỚI]** Cập nhật trạng thái (paused)
              }
 
              function startYouTubeProgressTracking() {
@@ -637,9 +708,10 @@
                     const duration = youtubePlayer.getDuration();
                     if (duration > 0 && !isNaN(currentTime) && !isNaN(duration)) {
                          if (progressBar) progressBar.style.width = `${(currentTime / duration) * 100}%`;
-                         // Update time display if needed (using your existing time elements or new ones)
-                         // e.g., document.getElementById('current-time').textContent = formatTimeForDisplayYT(currentTime);
-                         // e.g., document.getElementById('total-time').textContent = formatTimeForDisplayYT(duration);
+                        // ** [MỚI] Cập nhật vị trí cho Media Session **
+                         if (hasMediaSession) {
+                             try { navigator.mediaSession.setPositionState({ duration: duration, playbackRate: youtubePlayer.getPlaybackRate() || 1, position: currentTime }); } catch(e) { /* Bỏ qua lỗi nhỏ */ }
+                         }
                      } else if (duration <= 0 && progressBar) {
                          progressBar.style.width = '0%'; // Indicate live stream or error
                      }
@@ -667,11 +739,12 @@
                     currentPlayerType = 'none'; currentTrackIndex = -1; return;
                  }
                  console.log(`--- Loading Track ${index} ---`);
-                 // Stop previous playback
-                 if (audio && !audio.paused) audio.pause();
-                 if (youtubePlayer && youtubePlayerReady && typeof youtubePlayer.stopVideo === 'function') {
-                     youtubePlayer.stopVideo();
-                     if (youtubeProgressInterval) { clearInterval(youtubeProgressInterval); youtubeProgressInterval = null; }
+                 // Stop previous playback & clear media session if switching player type potentially
+                 if (currentPlayerType === 'url' && audio && !audio.paused) { audio.pause(); }
+                 else if (currentPlayerType === 'youtube' && youtubePlayer && youtubePlayerReady && typeof youtubePlayer.stopVideo === 'function') { youtubePlayer.stopVideo(); }
+                if (youtubeProgressInterval) { clearInterval(youtubeProgressInterval); youtubeProgressInterval = null; }
+                 if(hasMediaSession && isPlaying) { // If previously playing, set to paused before load
+                      updateMediaSessionPlaybackState(); // Set to paused before loading new
                  }
 
                  // Reset common state
@@ -691,144 +764,482 @@
                      trackTitleElement.classList.toggle('is-youtube', trackType === 'youtube');
                  }
 
+                 // --- Update Media Session metadata --- [MỚI] - Gọi sớm hơn để có thông tin khi đang load
+                 updateMediaSessionMetadata();
+                 // --- Setup Media Session actions (in case playlist length changed) --- [MỚI]
+                 setupMediaSessionActions();
+
                  if (trackType === 'youtube') {
                      console.log(`Type: YouTube, Video ID: ${track.videoId}`);
                      if (!track.videoId) {
                         if (trackTitleElement) trackTitleElement.textContent = "Lỗi ID YouTube";
                          currentPlayerType = 'none'; return;
                      }
-                     if (audio && audio.src) { // Reset audio element if was used
-                         audio.removeAttribute('src');
-                         try { audio.load(); } catch(e) { console.warn("Minor error resetting audio:", e); }
+                     // Ensure HTML Audio is reset if switching from URL type
+                      if (audio && audio.src) {
+                          if (!audio.paused) audio.pause();
+                          audio.removeAttribute('src');
+                          try { audio.load(); } catch (e) { console.warn("Minor error resetting audio:", e); }
+                      }
+                     // --- Load YouTube video ---
+                     if (!youtubeApiReady) {
+                         console.warn("Cannot load YouTube: API not ready yet. Will load when API ready.");
+                         if (trackTitleElement) trackTitleElement.textContent = "Chờ API YouTube...";
+                         // We already set currentPlayerType to 'youtube' and index, API ready handler will call loadTrack again.
+                         return; // Important: Don't proceed further until API is ready
                      }
                      if (youtubePlayer && typeof youtubePlayer.loadVideoById === 'function') { // Reuse player
-                         if (youtubeApiReady) youtubePlayer.loadVideoById(track.videoId); // Don't autoplay here
-                         else { if (trackTitleElement) trackTitleElement.textContent = "Lỗi API YT..."; currentPlayerType = 'none'; }
-                     } else if (youtubeApiReady) { // Create new player
-                         youtubePlayer = new YT.Player('youtube-player-container', {
-                            height: '1', width: '1', videoId: track.videoId,
+                         console.log("Reusing YT Player, loading ID:", track.videoId);
+                         youtubePlayer.cueVideoById(track.videoId); // Use cueVideoById to load without auto-play
+                     } else { // Create new player if it doesn't exist yet
+                        console.log("Creating new YT Player instance for ID:", track.videoId);
+                        // Destroy old player if it exists but isn't valid (shouldn't happen often)
+                        if (youtubePlayer && typeof youtubePlayer.destroy === 'function') {
+                             try { youtubePlayer.destroy(); } catch (e) {}
+                             youtubePlayer = null;
+                        }
+                        youtubePlayer = new YT.Player('youtube-player-container', {
+                             height: '1', width: '1', videoId: track.videoId,
                              playerVars: { 'playsinline': 1, 'autoplay': 0, 'controls': 0, 'disablekb': 1, 'fs': 0, 'iv_load_policy': 3, 'modestbranding': 1, 'rel': 0 },
                              events: { 'onReady': onPlayerReady, 'onStateChange': onPlayerStateChange, 'onError': onPlayerError }
                          });
-                     } else {
-                         console.warn("Cannot load YouTube: API not ready yet.");
-                         if (trackTitleElement) trackTitleElement.textContent = "Chờ API YouTube...";
-                         currentPlayerType = 'none';
                      }
                  } else { // url track
-                     console.log(`Type: URL, Source: ${track.url}`);
+                    console.log(`Type: URL, Source: ${track.url}`);
                      if (!track.url) { if (trackTitleElement) trackTitleElement.textContent = "Lỗi URL Track"; currentPlayerType = 'none'; return; }
                      if (typeof Audio === 'undefined') { if(trackTitleElement) trackTitleElement.textContent = "Lỗi Audio HTML5"; currentPlayerType = 'none'; return; }
-                     if (!audio) { // Create Audio element if needed
-                         try { audio = new Audio(); audio.preload = 'metadata'; addAudioListeners(); } // Add listeners ONLY once
+                    // Ensure YouTube player is stopped if switching from YT type
+                     if (youtubePlayer && typeof youtubePlayer.stopVideo === 'function') {
+                         try { youtubePlayer.stopVideo(); } catch(e) {}
+                         youtubePlayerReady = false;
+                         if (youtubeProgressInterval) { clearInterval(youtubeProgressInterval); youtubeProgressInterval = null; }
+                     }
+                     // --- Load HTML Audio ---
+                    if (!audio) { // Create Audio element if needed
+                         try {
+                             audio = new Audio();
+                             audio.preload = 'metadata';
+                             addAudioListeners(); // Add listeners ONLY once
+                             // ** [MỚI] Sync HTML Audio volume with YouTube if possible **
+                              if (youtubePlayer && typeof youtubePlayer.getVolume === 'function') {
+                                 try { audio.volume = youtubePlayer.getVolume() / 100; } catch(e){}
+                             } else {
+                                 audio.volume = 0.8; // Default volume
+                             }
+                         }
                          catch (e) { console.error("Cannot create Audio obj:", e); if(trackTitleElement) trackTitleElement.textContent = "Lỗi Audio"; currentPlayerType = 'none'; return; }
                      }
-                     try { console.log("Setting audio src & load..."); audio.src = track.url; audio.load(); } // 'canplay' event handles enabling controls
+                    try {
+                         console.log("Setting audio src & load:", track.url);
+                         if (audio.src !== track.url) { // Only set src if it's different
+                             audio.src = track.url;
+                             audio.load(); // 'canplay' event handles enabling controls & playAfterLoad
+                         } else if (audio.readyState >= 2) { // If same URL and already loaded somewhat
+                            audio.currentTime = 0; // Seek to start
+                             enableMainControls(); updatePrevNextButtonStates(); // Enable controls immediately
+                            updateAudioPositionState(); // Update media session position
+                            if (playAfterLoad) { playAudio(); } // Play if requested
+                         } else { // Same URL but not ready, trigger load again
+                            audio.load();
+                         }
+                     }
                      catch (e) { console.error("Audio src/load error:", e); if (trackTitleElement) trackTitleElement.textContent = "Lỗi Load Audio"; disableAllControls(); currentPlayerType = 'none'; }
                  }
              }
 
+             // --- [MỚI] Function to update Media Session position state for HTML Audio ---
+              function updateAudioPositionState() {
+                  if (!hasMediaSession || currentPlayerType !== 'url' || !audio || !audio.duration || isNaN(audio.duration)) return;
+                  try {
+                       navigator.mediaSession.setPositionState({
+                          duration: audio.duration,
+                          playbackRate: audio.playbackRate || 1,
+                          position: audio.currentTime
+                      });
+                  } catch(e) { /* ignore minor errors */ }
+              }
+
             function addAudioListeners() { // Attached only once to the Audio object
                 if (!audio) return;
                 console.log("Attaching listeners to Audio element.");
-                audio.addEventListener('timeupdate', () => { if (currentPlayerType === 'url' && audio.duration && !isNaN(audio.duration) && progressBar && isPlaying) progressBar.style.width = `${(audio.currentTime / audio.duration) * 100}%`; });
-                audio.addEventListener('ended', () => { if (currentPlayerType === 'url') { isPlaying = false; updatePlayPauseButton(false); container?.classList.remove('is-playing'); playNextTrack(true); } });
-                audio.addEventListener('error', (e) => { if (currentPlayerType === 'url') { let m="Err";if(audio.error){switch(audio.error.code){case 1:m='Abort';break;case 2:m='Net';break;case 3:m='Decode';break;case 4:m='Format';break;default:m=`${audio.error.code}`}} console.error("Audio Err:",m,e);if(trackTitleElement)trackTitleElement.textContent=m; disableAllControls();isPlaying=false;playAfterLoad=false;currentPlayerType='none';updatePlayPauseButton(false);container?.classList.remove('is-playing');} });
-                audio.addEventListener('canplay', () => { if (currentPlayerType === 'url') { console.log("Audio CanPlay"); if (!audio.error) { enableMainControls(); updatePrevNextButtonStates(); if (playAfterLoad) { playAfterLoad = false; playAudio(); } } else console.error("Audio CanPlay with error state."); } });
+                // --- TIMEUPDATE: Update progress bar and Media Session Position --- [CẬP NHẬT]
+                audio.addEventListener('timeupdate', () => {
+                    if (currentPlayerType === 'url' && audio.duration && !isNaN(audio.duration) && progressBar && isPlaying) {
+                        progressBar.style.width = `${(audio.currentTime / audio.duration) * 100}%`;
+                         updateAudioPositionState(); // Cập nhật vị trí cho Media Session
+                     }
+                });
+                 // --- ENDED: Auto-play next --- [CẬP NHẬT]
+                audio.addEventListener('ended', () => {
+                    if (currentPlayerType === 'url') {
+                         isPlaying = false;
+                         updatePlayPauseButton(false); container?.classList.remove('is-playing');
+                         updateMediaSessionPlaybackState(); // Cập nhật trạng thái
+                        playNextTrack(true);
+                    }
+                 });
+                // --- ERROR: Handle audio errors --- [CẬP NHẬT]
+                audio.addEventListener('error', (e) => {
+                    if (currentPlayerType === 'url') {
+                         let m="Err";if(audio.error){switch(audio.error.code){case 1:m='Abort';break;case 2:m='Net';break;case 3:m='Decode';break;case 4:m='Format';break;default:m=`${audio.error.code}`}} console.error("Audio Err:",m,e);if(trackTitleElement)trackTitleElement.textContent=m;
+                         disableAllControls();isPlaying=false;playAfterLoad=false;currentPlayerType='none';updatePlayPauseButton(false);container?.classList.remove('is-playing');
+                        updateMediaSessionPlaybackState(); // Cập nhật trạng thái
+                    }
+                 });
+                 // --- CANPLAY: Ready to potentially play --- [CẬP NHẬT]
+                 audio.addEventListener('canplay', () => {
+                    if (currentPlayerType === 'url') {
+                        console.log("Audio CanPlay");
+                        if (!audio.error) {
+                            enableMainControls();
+                             updatePrevNextButtonStates();
+                             updateAudioPositionState(); // <<<--- Cập nhật trạng thái vị trí khi sẵn sàng
+                            updateMediaSessionMetadata(); // <<<--- Cập nhật metadata (quan trọng nếu load lại cùng bài)
+                             setupMediaSessionActions();   // <<<--- Thiết lập lại actions
+                            if (playAfterLoad) { playAfterLoad = false; playAudio(); }
+                        } else console.error("Audio CanPlay with error state.");
+                    }
+                });
+                // --- PAUSE: Update UI and Media Session state --- [CẬP NHẬT]
+                 audio.addEventListener('pause', () => {
+                    // Chỉ xử lý nếu *thực sự* đang chuyển từ isPlaying=true sang false
+                     if (currentPlayerType === 'url' && isPlaying) {
+                         isPlaying = false;
+                        updatePlayPauseButton(false);
+                         playAfterLoad = false; // Don't auto-play after a manual pause
+                         container?.classList.remove('is-playing');
+                         updateMediaSessionPlaybackState(); // Cập nhật trạng thái
+                     }
+                 });
+                // --- PLAY / PLAYING: Update UI and Media Session state --- [CẬP NHẬT]
+                // Dùng 'playing' sẽ chắc chắn hơn 'play'
+                 audio.addEventListener('playing', () => {
+                    // Chỉ xử lý nếu *thực sự* đang chuyển từ isPlaying=false sang true
+                    if (currentPlayerType === 'url' && !isPlaying) {
+                        isPlaying = true;
+                         updatePlayPauseButton(true);
+                        container?.classList.add('is-playing');
+                         updateMediaSessionPlaybackState(); // Cập nhật trạng thái
+                     }
+                 });
                 audio.addEventListener('loadstart', () => { if (currentPlayerType === 'url') console.log("Audio Load Start..."); });
-                audio.addEventListener('pause', () => { if (currentPlayerType === 'url' && isPlaying) { isPlaying = false; updatePlayPauseButton(false); playAfterLoad = false; container?.classList.remove('is-playing'); } });
-                audio.addEventListener('play', () => { if (currentPlayerType === 'url' && !isPlaying) { isPlaying = true; updatePlayPauseButton(true); container?.classList.add('is-playing'); } });
-                audio.addEventListener('seeking', () => { if (currentPlayerType === 'url') console.log("Audio Seeking..."); });
-                audio.addEventListener('seeked', () => { if (currentPlayerType === 'url') console.log("Audio Seeked."); });
+                 // --- SEEKING / SEEKED: Update Media Session position --- [MỚI]
+                audio.addEventListener('seeking', () => { if (currentPlayerType === 'url' && hasMediaSession) { /* Có thể hiển thị trạng thái seeking nếu muốn */ } });
+                 audio.addEventListener('seeked', () => { if (currentPlayerType === 'url') { console.log("Audio Seeked."); updateAudioPositionState(); } }); // Update position after seek
+
+                // ** [MỚI] Volume change listener to sync YouTube volume if needed **
+                 audio.addEventListener('volumechange', () => {
+                     if (currentPlayerType === 'url' && youtubePlayer && typeof youtubePlayer.setVolume === 'function' && youtubePlayerReady) {
+                        // This creates a potential loop if both are active. Best to avoid two-way sync.
+                        // Maybe only set YT volume ONCE when creating audio, or when switching TO YT.
+                     }
+                 });
              }
 
              function togglePlayPause() {
                  if (!userHasInteracted) {
                      console.warn("Interaction needed for playback."); userHasInteracted = true;
-                     // Workaround for potential audio context suspension
-                     if (window.AudioContext && audio && audio.context && audio.context.state === 'suspended') {
-                         audio.context.resume();
-                     }
+                     // Workaround for potential audio context suspension (might not be needed for basic audio/YT)
+                     // if (window.AudioContext && audio && audio.context && audio.context.state === 'suspended') {
+                     //     audio.context.resume().catch(e => console.warn("AudioContext resume failed:", e));
+                     // }
                  }
                  if (playPauseBtn?.disabled) {
-                    if (currentTrackIndex < 0 && playlist.length > 0) { playAfterLoad = true; loadTrack(0); }
-                     return;
+                    // If button is disabled but we have tracks, attempt to load the first one
+                    if (currentTrackIndex < 0 && playlist.length > 0) {
+                         console.log("Play button disabled, loading first track...");
+                        playAfterLoad = true; // Set flag to play after load completes
+                         loadTrack(0);
+                     } else {
+                        console.log("Play button disabled, cannot play.");
+                     }
+                     return; // Do nothing else if disabled
                  }
-                 if (isPlaying) pauseAudio(); else { playAfterLoad = true; playAudio(); }
+
+                 if (isPlaying) {
+                     pauseAudio();
+                 } else {
+                    // If no track is loaded yet, load the first one.
+                     if (currentTrackIndex < 0 && playlist.length > 0) {
+                         playAfterLoad = true; // Ensure it plays after loading
+                         loadTrack(0);
+                     } else {
+                        // Otherwise, just play the currently loaded track.
+                        playAfterLoad = true; // Might still be loading, set flag just in case
+                        playAudio();
+                     }
+                 }
              }
 
              function playAudio() {
-                 playAfterLoad = false;
-                 if (currentPlayerType === 'youtube') {
-                    if (youtubePlayer && youtubePlayerReady && typeof youtubePlayer.playVideo === 'function') { console.log("CMD: YT playVideo()"); youtubePlayer.playVideo(); }
-                    else { console.warn("Cannot Play YT: Not ready."); if (youtubePlayer && !youtubePlayerReady) playAfterLoad=true; else if (!youtubePlayer && currentTrackIndex >= 0) { playAfterLoad=true; loadTrack(currentTrackIndex); } else updatePlayPauseButton(false); }
+                if(playPauseBtn?.disabled) return; // Double check if controls became disabled
+
+                playAfterLoad = false; // Reset the flag
+                console.log(`Attempting to play (Type: ${currentPlayerType})`);
+
+                if (currentPlayerType === 'youtube') {
+                    if (youtubePlayer && youtubePlayerReady && typeof youtubePlayer.playVideo === 'function') {
+                         console.log("CMD: YT playVideo()");
+                        youtubePlayer.playVideo();
+                         // State change handler will update isPlaying and Media Session
+                     } else {
+                         console.warn("Cannot Play YT: Not ready or no player.");
+                         // If player exists but isn't ready, set flag to play when ready
+                         if (youtubePlayer && !youtubePlayerReady) {
+                             playAfterLoad = true;
+                             console.log("YT Player exists but not ready, setting playAfterLoad = true");
+                         }
+                         // If no player and a track is selected, attempt to load it again (API might have loaded now)
+                         else if (!youtubePlayer && currentTrackIndex >= 0) {
+                            console.log("No YT player instance, trying to load track again:", currentTrackIndex);
+                             playAfterLoad = true; // Set flag to play after successful load
+                            loadTrack(currentTrackIndex);
+                         }
+                        // Fallback: If cannot play, ensure button reflects paused state
+                         else {
+                            updatePlayPauseButton(false);
+                         }
+                     }
                  } else if (currentPlayerType === 'url') {
-                    if (!audio || !audio.src) { console.error("Cannot Play Audio: No object/src."); if (currentTrackIndex >= 0) loadTrack(currentTrackIndex); updatePlayPauseButton(false); return; }
-                     if (audio.readyState < audio.HAVE_METADATA) { console.warn("Audio not ready:", audio.readyState); playAfterLoad = true; audio.load(); return; }
-                     console.log("CMD: Audio play()"); const p=audio.play();
-                    if (p!== undefined) {p.then(_=>{}).catch(e=>{console.error(`Audio Play Fail: ${e.name}`,e); isPlaying=false;playAfterLoad=false;updatePlayPauseButton(false);container?.classList.remove('is-playing');if(e.name==='NotAllowedError'){if(trackTitleElement&&!trackTitleElement.textContent.includes("Click")) trackTitleElement.textContent+=" (Click Play)";userHasInteracted=false;}else if(e.name==='NotSupportedError'){if(trackTitleElement) trackTitleElement.textContent="Format Err";disableAllControls();currentPlayerType='none';}else{if(trackTitleElement) trackTitleElement.textContent=`Play Err: ${e.name}`;disableMainControls();}updatePrevNextButtonStates();});}
-                } else { console.warn("Cannot Play: No player type."); updatePlayPauseButton(false); if (currentTrackIndex < 0 && playlist.length > 0) { playAfterLoad=true; loadTrack(0); } }
+                    if (!audio || !audio.src) {
+                         console.error("Cannot Play Audio: No object/src.");
+                        // If a track index exists, try loading it
+                         if (currentTrackIndex >= 0) {
+                             playAfterLoad = true;
+                            loadTrack(currentTrackIndex);
+                         } else {
+                            updatePlayPauseButton(false); // Ensure paused state if no track loaded
+                         }
+                        return;
+                     }
+                    // Check readyState before playing
+                    // READY_HAVE_NOTHING (0), READY_HAVE_METADATA (1), READY_HAVE_CURRENT_DATA (2), READY_HAVE_FUTURE_DATA (3), READY_HAVE_ENOUGH_DATA (4)
+                    if (audio.readyState < 2) { // Need at least metadata/current data to attempt play
+                         console.warn("Audio not ready to play:", audio.readyState);
+                        playAfterLoad = true; // Set flag to play when 'canplay' event fires
+                        if (audio.networkState === 3) { // NETWORK_NO_SOURCE
+                             console.error("Audio Network State: No Source. Reloading track.");
+                             loadTrack(currentTrackIndex); // Try reloading fully
+                         } else if (audio.networkState !== 1) { // NETWORK_IDLE (1) is okay
+                             console.log("Audio Network State not Idle, attempting load(). State:", audio.networkState);
+                             audio.load(); // Attempt to trigger loading
+                         }
+                         return; // Wait for 'canplay'
+                     }
+
+                     console.log("CMD: Audio play()");
+                    const playPromise = audio.play();
+                     if (playPromise !== undefined) {
+                        playPromise
+                             .then(_ => {
+                                 // Playback started successfully.
+                                 // isPlaying and Media Session state will be updated by the 'playing' event listener.
+                             })
+                             .catch(error => {
+                                 console.error(`Audio Play Failed: ${error.name}`, error);
+                                 isPlaying = false; // Ensure state is false
+                                 playAfterLoad = false; // Reset flag
+                                 updatePlayPauseButton(false);
+                                 container?.classList.remove('is-playing');
+                                 updateMediaSessionPlaybackState(); // Update Media Session
+                                if (error.name === 'NotAllowedError') {
+                                    if (trackTitleElement && !trackTitleElement.textContent.includes("Click")) {
+                                        trackTitleElement.textContent += " (Click Play)";
+                                     }
+                                    userHasInteracted = false; // Require interaction again
+                                     // alert("Trình duyệt chặn tự động phát. Nhấn Play lần nữa nhé!");
+                                 } else if (error.name === 'NotSupportedError') {
+                                    if (trackTitleElement) trackTitleElement.textContent = "Format không hỗ trợ";
+                                    disableAllControls(); currentPlayerType = 'none';
+                                 } else {
+                                    if (trackTitleElement) trackTitleElement.textContent = `Lỗi Phát: ${error.name}`;
+                                    // Maybe disable just main controls or try reloading
+                                     disableMainControls();
+                                 }
+                                updatePrevNextButtonStates(); // Update buttons based on disabled state
+                             });
+                    } else {
+                         // Fallback if playPromise is not supported (older browsers)
+                         // Assume playback started, 'playing' event should still fire hopefully
+                         console.warn("audio.play() did not return a promise.");
+                     }
+                } else {
+                    console.warn("Cannot Play: No valid player type selected.");
+                     updatePlayPauseButton(false); // Reflect paused state
+                    // If no player but we have tracks, load the first one
+                     if (currentTrackIndex < 0 && playlist.length > 0) {
+                         playAfterLoad = true;
+                        loadTrack(0);
+                     }
+                 }
              }
 
              function pauseAudio() {
-                 playAfterLoad = false;
-                 if (currentPlayerType === 'youtube') { if (youtubePlayer && youtubePlayerReady && typeof youtubePlayer.pauseVideo === 'function') { console.log("CMD: YT pauseVideo()"); youtubePlayer.pauseVideo(); } else console.warn("Cannot Pause YT: Not ready."); }
-                 else if (currentPlayerType === 'url') { if (audio && !audio.paused) { console.log("CMD: Audio pause()"); audio.pause(); } else console.warn("Cannot Pause Audio: Not playing."); }
-                 else console.warn("Cannot Pause: No player type.");
+                playAfterLoad = false; // Stop any pending play requests
+                 console.log(`Attempting to pause (Type: ${currentPlayerType})`);
+
+                if (currentPlayerType === 'youtube') {
+                    if (youtubePlayer && youtubePlayerReady && typeof youtubePlayer.pauseVideo === 'function') {
+                        console.log("CMD: YT pauseVideo()");
+                        youtubePlayer.pauseVideo();
+                        // isPlaying & Media Session state updated via 'onStateChange'
+                    } else console.warn("Cannot Pause YT: Not ready or no player.");
+                 }
+                 else if (currentPlayerType === 'url') {
+                     if (audio && !audio.paused) {
+                         console.log("CMD: Audio pause()");
+                        audio.pause();
+                         // isPlaying & Media Session state updated via 'pause' listener
+                    } else console.warn("Cannot Pause Audio: Not playing or no element.");
+                 }
+                 else console.warn("Cannot Pause: No valid player type selected.");
+
+                 // Ensure UI reflects paused state even if player action failed somehow
+                 if(isPlaying) { // If logic thought it was playing but pause might have failed
+                     updatePlayPauseButton(false); // Force UI update
+                     isPlaying = false;
+                     container?.classList.remove('is-playing');
+                     updateMediaSessionPlaybackState(); // Attempt to update state anyway
+                 }
              }
+
 
              function playNextTrack(triggeredByEnd = false) {
                 if (!playlist || playlist.length === 0) return;
-                if (playlist.length === 1 && !triggeredByEnd) { seekToStart(); return; }
-                const shouldContinuePlay = isPlaying || triggeredByEnd;
-                const nextIndex = (currentTrackIndex + 1) % playlist.length;
-                 playAfterLoad = shouldContinuePlay; loadTrack(nextIndex);
+                 if (!nextBtn || nextBtn.disabled) {
+                    console.log("Next button disabled or no playlist, cannot play next.");
+                     // If triggered by end, potentially stop playback or loop single track
+                     if(triggeredByEnd) {
+                         seekToStart(); // Go back to start of single track
+                         if (!isPlaying) { updatePlayPauseButton(false); } // Keep paused if was paused
+                     }
+                     return;
+                 }
+                 // Determine if the next track should start playing automatically
+                 // Play if currently playing OR if the previous track just ended naturally.
+                 const shouldContinuePlay = isPlaying || triggeredByEnd;
+                console.log(`Playing Next Track (Auto-play: ${shouldContinuePlay})`);
+                 const nextIndex = (currentTrackIndex + 1) % playlist.length;
+                 playAfterLoad = shouldContinuePlay; // Set flag for loadTrack
+                loadTrack(nextIndex);
              }
 
-            function playPrevTrack() {
-                if (!playlist || playlist.length === 0) return;
+             function playPrevTrack() {
+                 if (!playlist || playlist.length === 0) return;
+                 if (!prevBtn || prevBtn.disabled) {
+                    console.log("Previous button disabled or no playlist, cannot play previous.");
+                    return;
+                 }
+                 // Determine if playback should continue
                 const shouldContinuePlay = isPlaying;
-                if (shouldContinuePlay && getCurrentPlaybackTime() > 3) { seekToStart(); return; }
-                 if (playlist.length === 1) { seekToStart(); return; }
-                 const prevIndex = (currentTrackIndex - 1 + playlist.length) % playlist.length;
-                 playAfterLoad = shouldContinuePlay; loadTrack(prevIndex);
+                 // If playing and current time is significant, just restart current track
+                if (shouldContinuePlay && getCurrentPlaybackTime() > 3) {
+                     console.log("Playing Previous Track (Restarting Current)");
+                    seekToStart();
+                    // No need to set playAfterLoad=true because seekToStart doesn't change isPlaying
+                    if(isPlaying) { // If currently playing, make sure play continues after seek
+                       // For YT, seekTo(0, true) usually keeps playing.
+                       // For HTML Audio, currentTime=0 keeps paused if paused, playing if playing.
+                       // So, explicitly call play if it was playing.
+                        if (currentPlayerType === 'url' && !audio.paused) {
+                             // Already playing, seeked. No action needed.
+                         } else if (currentPlayerType === 'youtube' && youtubePlayer?.getPlayerState() === YT.PlayerState.PLAYING) {
+                             // Already playing, seeked. No action needed.
+                         } else {
+                             // If somehow paused after seek, play again
+                             // This case is unlikely with the > 3s condition if already playing
+                             playAudio();
+                         }
+                     }
+                    return;
+                 }
+                // Otherwise, go to the actual previous track
+                console.log(`Playing Previous Track (Auto-play: ${shouldContinuePlay})`);
+                const prevIndex = (currentTrackIndex - 1 + playlist.length) % playlist.length;
+                 playAfterLoad = shouldContinuePlay; // Set flag for loadTrack
+                loadTrack(prevIndex);
              }
 
              function getCurrentPlaybackTime() {
-                 if (currentPlayerType === 'youtube' && youtubePlayerReady && typeof youtubePlayer.getCurrentTime === 'function') return youtubePlayer.getCurrentTime();
-                 else if (currentPlayerType === 'url' && audio && !isNaN(audio.currentTime)) return audio.currentTime;
-                 return 0;
+                 if (currentPlayerType === 'youtube' && youtubePlayerReady && typeof youtubePlayer.getCurrentTime === 'function') {
+                    try { return youtubePlayer.getCurrentTime(); } catch (e) { return 0; }
+                }
+                 else if (currentPlayerType === 'url' && audio && !isNaN(audio.currentTime)) {
+                     return audio.currentTime;
+                }
+                return 0;
             }
 
              function seekToStart() {
                 if (progressBar) progressBar.style.width = '0%';
-                 if (currentPlayerType === 'youtube' && youtubePlayerReady && typeof youtubePlayer.seekTo === 'function') youtubePlayer.seekTo(0, true);
-                 else if (currentPlayerType === 'url' && audio && audio.readyState >= 1) audio.currentTime = 0;
-                 if (!isPlaying && currentPlayerType === 'url') {
-                    // Nếu đang pause audio, cần cập nhật lại progress bar sau khi seek
-                     requestAnimationFrame(() => { if (progressBar && currentPlayerType === 'url') progressBar.style.width = '0%'; });
+                 if (currentPlayerType === 'youtube' && youtubePlayerReady && typeof youtubePlayer.seekTo === 'function') {
+                    try { youtubePlayer.seekTo(0, true); } catch(e){ console.error("YT SeekToStart error:", e); }
+                } else if (currentPlayerType === 'url' && audio && audio.readyState >= 1) { // Need at least metadata
+                    audio.currentTime = 0;
+                    updateAudioPositionState(); // Update media session immediately after seek
+                }
+                // Ensure progress bar reflects start visually, especially if paused
+                if (!isPlaying && progressBar) {
+                     requestAnimationFrame(() => { if (progressBar) progressBar.style.width = '0%'; });
                  }
              }
 
-             if (progressContainer) { // Progress bar click handler
+            // Click handler for Progress Bar Seeking - [CẬP NHẬT]
+             if (progressContainer) {
                  progressContainer.addEventListener('click', (e) => {
-                    if (playPauseBtn?.disabled) return; let duration = 0; let playerAvailable = false;
-                     if (currentPlayerType==='youtube' && youtubePlayerReady && typeof youtubePlayer.getDuration === 'function') { duration=youtubePlayer.getDuration(); playerAvailable=duration>0;}
-                    else if (currentPlayerType==='url' && audio && audio.duration && !isNaN(audio.duration) && audio.readyState >= 1) { duration=audio.duration; playerAvailable=true;}
-                     if (!playerAvailable || duration <= 0) return;
-                    try { const r = progressContainer.getBoundingClientRect(); if (e.clientX < r.left || e.clientX > r.right) return; const c = Math.max(0, Math.min(1, (e.clientX - r.left) / progressContainer.offsetWidth)); const t = c * duration; if (progressBar) progressBar.style.width=`${c * 100}%`; if (currentPlayerType === 'youtube') youtubePlayer.seekTo(t, true); else audio.currentTime = t;} catch (err) { console.error("Seek error:", err); }
-                });
+                    if (playPauseBtn?.disabled) return; // Don't seek if controls disabled
+
+                    let duration = 0;
+                    let playerAvailable = false;
+
+                    if (currentPlayerType === 'youtube' && youtubePlayerReady && typeof youtubePlayer.getDuration === 'function') {
+                         try { duration = youtubePlayer.getDuration(); playerAvailable = duration > 0; } catch (e) { console.error("Error getting YT duration:", e); }
+                     } else if (currentPlayerType === 'url' && audio && audio.duration && !isNaN(audio.duration) && audio.readyState >= 2) { // Need at least HAVE_CURRENT_DATA
+                         duration = audio.duration;
+                         playerAvailable = true;
+                     }
+
+                     if (!playerAvailable || duration <= 0) {
+                         console.warn("Cannot seek: Player not ready or duration invalid.");
+                        return;
+                     }
+
+                     try {
+                         const rect = progressContainer.getBoundingClientRect();
+                        // Make sure click is within bounds horizontally
+                         if (e.clientX < rect.left || e.clientX > rect.right) return;
+                        const clickX = e.clientX - rect.left;
+                         const percentage = Math.max(0, Math.min(1, clickX / progressContainer.offsetWidth));
+                         const targetTime = percentage * duration;
+
+                         console.log(`Seek requested to ${percentage * 100}% (${targetTime.toFixed(2)}s)`);
+                        // Update progress bar immediately for better responsiveness
+                        if (progressBar) progressBar.style.width = `${percentage * 100}%`;
+
+                        if (currentPlayerType === 'youtube') {
+                            youtubePlayer.seekTo(targetTime, true); // True allows seeking ahead
+                         } else if (currentPlayerType === 'url') {
+                            audio.currentTime = targetTime;
+                             // Update Media Session position immediately after setting currentTime
+                             updateAudioPositionState();
+                        }
+                     } catch (err) {
+                         console.error("Error during seek:", err);
+                     }
+                 });
             }
 
+            // --- Control Button State Updaters --- [Unchanged]
             function enableMainControls() { if (playPauseBtn) playPauseBtn.disabled = false; if (progressContainer) progressContainer.style.cursor = 'pointer'; updatePrevNextButtonStates(); }
             function disableMainControls() { if (playPauseBtn) playPauseBtn.disabled = true; if (progressContainer) progressContainer.style.cursor = 'default'; }
             function disableAllControls() { disableMainControls(); if (prevBtn) prevBtn.disabled = true; if (nextBtn) nextBtn.disabled = true; }
             function updatePrevNextButtonStates() { const canGo = playlist && playlist.length > 1; if (prevBtn) prevBtn.disabled = !canGo || playPauseBtn?.disabled; if (nextBtn) nextBtn.disabled = !canGo || playPauseBtn?.disabled; }
             function updatePlayPauseButton(playing) { if (playIcon) playIcon.setAttribute('name', playing ? 'pause-outline' : 'play-outline'); if (playPauseBtn) playPauseBtn.setAttribute('aria-label', playing ? 'Tạm dừng' : 'Phát'); }
 
-            // ============================
-            // === CLOCK / TODO / ANIME (Logic không đổi, giữ nguyên) ===
-            // ============================
+
+            // ======================================================
+            // === CLOCK / TODO / ANIME (Logic giữ nguyên, không đổi) ===
+            // ======================================================
              function updateClock(){ if(!clockElement)return; try{ const n=new Date(),h=String(n.getHours()).padStart(2,'0'),m=String(n.getMinutes()).padStart(2,'0'),s=String(n.getSeconds()).padStart(2,'0'); clockElement.textContent=`${h}:${m}:${s}`; } catch(e){ console.error("Clock err:",e); if(clockInterval)clearInterval(clockInterval); } }
             function scheduleNotification(t){ if(!t.notifyTime||t.completed||!(t.notifyTime instanceof Date)||isNaN(t.notifyTime))return;const n=Date.now(),s=t.notifyTime.getTime(),d=s-n;if(t.timeoutId){clearTimeout(t.timeoutId);t.timeoutId=null;}if(d>0&&notificationPermission==='granted'){t.timeoutId=setTimeout(()=>{showNotification(t);const c=tasks.find(x=>x.id===t.id);if(c){c.timeoutId=null;saveTasks();renderTasks();}},d);}else t.timeoutId=null; }
             function showNotification(t){ if(notificationPermission!=='granted')return;try{const n=new Notification('📅 Việc cần làm!',{body:t.text,icon:'https://niyakipham.github.io/assets/kaguya.jpeg',tag:t.id,renotify:true});n.onclick=()=>{window.focus();const l=todoListElement?.querySelector(`li[data-id="${t.id}"]`);if(l){l.scrollIntoView({behavior:'smooth',block:'center'});l.style.backgroundColor='rgba(var(--color-primary-rgb),0.2)';setTimeout(()=>{l.style.backgroundColor='';},1500);}};n.onerror=e=>console.error('Notif err:',e);}catch(e){console.error('Show notif err:',e);} }
@@ -850,31 +1261,51 @@
             function closePlayer() { if (!playerContainer || !playerIframe || !playerContainer.classList.contains('visible')) return; playerContainer.classList.remove('visible'); document.body.classList.remove('player-open'); playerIframe.src = ''; const R = () => { if (!playerContainer.classList.contains('visible')) { playerContainer.style.display = ''; } playerContainer.removeEventListener('transitionend', R); }; playerContainer.addEventListener('transitionend', R); setTimeout(() => { if (!playerContainer.classList.contains('visible')) { playerContainer.style.display = ''; playerContainer.removeEventListener('transitionend', R); } }, 400);}
             function goBackToSearch() { if (resultsContainer) resultsContainer.style.display = 'block'; if (episodeListContainer) episodeListContainer.style.display = 'none'; if (backToSearchBtn) backToSearchBtn.style.display = 'none'; if (searchInput) { searchInput.focus(); handleSearch(); } }
 
+
             // ============================
             // === INITIALIZATION ===
             // ============================
-            console.log("🚀 Init Profile v13.0 (YouTube Integration)... ✨");
+            console.log("🚀 Init Profile v14.0 (Media Session Integration)... ✨");
+             if (hasMediaSession) { console.log("🎧 Media Session API is supported!"); }
+             else { console.warn("⚠️ Media Session API is NOT supported in this browser."); }
+
             setPrimaryColorRGB();
             if (clockElement) { updateClock(); clockInterval = setInterval(updateClock, 1000); }
             loadTasks();
             loadAnimeData();
-            loadYouTubeAPI(); // Trigger YT API load
+            loadYouTubeAPI(); // Trigger YT API load (calls loadTrack if needed)
 
-            // Init Music Player Listeners
+            // --- Init Music Player Listeners ---
             if (playPauseBtn) playPauseBtn.addEventListener('click', togglePlayPause);
             if (nextBtn) nextBtn.addEventListener('click', () => playNextTrack(false));
             if (prevBtn) prevBtn.addEventListener('click', playPrevTrack);
 
+             // --- Set initial player state ---
             if (playlist && playlist.length > 0) {
-                if (playPauseBtn) playPauseBtn.disabled = false; // Enable play button
-                updatePrevNextButtonStates();
+                // Don't disable play button initially, allow user to start playback
+                // Play button starts disabled, enabled when track is ready via onPlayerReady/canplay
+                disableAllControls(); // Start fully disabled
+                updatePrevNextButtonStates(); // Reflect disabled state correctly
                 if (trackTitleElement) trackTitleElement.textContent = "Sẵn sàng phát nhạc";
-            } else {
-                if (trackTitleElement) trackTitleElement.textContent = "Playlist trống";
+                if (playPauseBtn) playPauseBtn.disabled = false; // **[QUAN TRỌNG]** Phải bật nút play ban đầu để người dùng có thể nhấn lần đầu
+                 if (hasMediaSession) { // Setup actions even before loading
+                    setupMediaSessionActions();
+                 }
+             } else {
+                 if (trackTitleElement) trackTitleElement.textContent = "Playlist trống";
                 disableAllControls();
+                 if(hasMediaSession) { // Clear any lingering session handlers/metadata if playlist empty
+                     navigator.mediaSession.metadata = null;
+                    navigator.mediaSession.playbackState = 'none';
+                    // Remove handlers explicitly
+                    try { navigator.mediaSession.setActionHandler('play', null); } catch (e) {}
+                    try { navigator.mediaSession.setActionHandler('pause', null); } catch (e) {}
+                    try { navigator.mediaSession.setActionHandler('previoustrack', null); } catch (e) {}
+                    try { navigator.mediaSession.setActionHandler('nexttrack', null); } catch (e) {}
+                }
             }
 
-            // Init Other Listeners
+            // --- Init Other Listeners ---
             if (searchInput) { searchInput.addEventListener('input', handleSearch); searchInput.addEventListener('keydown', (e) => { if(e.key==='Enter')handleSearch(); }); }
             if (searchButton) searchButton.addEventListener('click', () => { if(searchInput)searchInput.focus(); handleSearch(); });
             if (closePlayerBtn) closePlayerBtn.addEventListener('click', closePlayer);
@@ -884,7 +1315,7 @@
             if (todoForm) todoForm.addEventListener('submit', addTask);
             if (requestPermissionBtn) requestPermissionBtn.addEventListener('click', handleRequestPermission);
 
-            // Init Entrance Animations
+            // --- Init Entrance Animations ---
             try {
                 if (typeof anime !== 'undefined') {
                     const tl=anime.timeline({easing:'easeOutExpo',duration:800});
@@ -918,7 +1349,7 @@
             if (avatar){avatar.addEventListener('mouseenter',()=>anime({targets:avatar,scale:1.08,rotate:4,duration:300,easing:'easeOutBack'})); avatar.addEventListener('mouseleave',()=>anime({targets:avatar,scale:1,rotate:0,duration:400,easing:'easeOutQuad'}));}
             Array.from(socialLinksContainer?.querySelectorAll('a')||[]).forEach(l=>{l.addEventListener('mouseenter',()=>anime({targets:l,translateY:-4,scale:1.15,duration:250,easing:'easeOutBack'}));l.addEventListener('mouseleave',()=>anime({targets:l,translateY:0,scale:1,duration:350,easing:'easeOutQuad'}));});
 
-            console.log("✅ Initialization v13.0 complete!");
+            console.log("✅ Initialization v14.0 complete!");
             if (typeof anime !== 'undefined') console.log("ℹ️ Anime.js v:", anime.version);
 
         }); // --- DOMContentLoaded End ---
